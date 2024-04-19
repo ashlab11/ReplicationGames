@@ -235,11 +235,8 @@ summary(mod6[])
 etable(mod1p,mod2p,mod3p,mod4p,mod5p,mod6p,
        keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
        tex = T,
-       file = here("replicated_output/", "Table2p.tex"))
-
-# etable(mod1,mod2,mod3,mod4,mod5,mod6,
-#   keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4")) %>%
-#   kable(format = "html", escape = FALSE)
+       replace = T,
+       file = here("replicated_output/", "tables: Table2p.tex"))
 
 # How I would set up the specification: grouping education levels, grouping income, age as non-linear control
 mod1x = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4,
@@ -309,6 +306,7 @@ etable(mod1[1],mod2[1],mod3[1],mod4[1],
        mod1[3],mod2[3],mod3[3],mod4[3],
        keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
        tex = T,
+       replace = T,
        file = here("replicated_output", "Table3.tex"))
 
 
@@ -340,7 +338,7 @@ etable(mod1x[1],mod2x[1],mod3x[1],mod4x[1],
        mod1x[2],mod2x[2],mod3x[2],mod4x[2],
        mod1x[3],mod2x[3],mod3x[3],mod4x[3],
        keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
-       tex = T, replace = T,
+       tex = T, replace = T, fitstat=~my, digits = 3,
        file = glue("/Users/mclarars/ReplicationGames/replicated_output/tables/Table3_Modified.tex"),
        notes = "\\textit{Notes:} Modified specifications. Controlling for 5 age bins instead of linear age. Observations with missing responses for education level and income dropped.")
 
@@ -361,14 +359,14 @@ euro_5_agex <- feols(vote_lega_euro ~ dummy_diesel + dummy_euro_5 + dummy_diesel
 etable(euro_5_noage, euro_5_age,
        keep = c("dummy_diesel", "dummy_euro_5"),
        tex = T,
-       replace = T,
+       replace = T, fitstat=~my, digits = 3,
        file = here("replicated_output/tables/Table4.tex"),
        notes = "\\textit{Notes:} Modified specifications. Fixed effects: grouped education levels, grouped income.")
 
 etable(euro_5_noage, euro_5_agex,
        keep = c("dummy_diesel", "dummy_euro_5"),
        tex = T,
-       replace = T,
+       replace = T, fitstat=~my, digits = 3,
        file = here("replicated_output/tables/Table4_Modified.tex"),
        notes = "\\textit{Notes:} Modified specifications. Fixed effects: grouped education levels, grouped income. Age included as non-linear control.")
 
@@ -414,14 +412,14 @@ switch_lega_munx <- feols(switch_descriptive_mun ~ dummy_diesel + dummy_euro_4 +
 etable(lega_vote, switch_lega_leg, switch_lega_reg, switch_lega_mun,
        keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
        tex = T,
-       replace = T,
+       replace = T, fitstat=~my, digits = 3,
        file = here("replicated_output/tables/Table5.tex"),
        notes = "\\textit{Notes:} Modified specifications. Fixed effects: grouped education levels, grouped income.")
 
 etable(lega_votex, switch_lega_legx, switch_lega_regx, switch_lega_munx,
        keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
        tex = T,
-       replace = T,
+       replace = T, fitstat=~my, digits = 3,
        file = here("replicated_output/tables/Table5_Modified.tex"),
        notes = "\\textit{Notes:} Modified specifications. Fixed effects: grouped education levels, grouped income. Age included as non-linear control.")
 
