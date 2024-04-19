@@ -14,13 +14,14 @@ gc()
 # Installing and Loading Packages #
 ###################################
 
-packages_required <- c('ggplot2', 'tidyverse', 'broom', 'car','dplyr','modelr','haven', 'forcats')
+packages_required <- c('ggplot2', 'tidyverse', 'broom', 'car','dplyr','modelr','haven', 'forcats', 
+                       'estimatr')
 
 for (package in packages_required) {
   if (!(package %in% installed.packages())) {
     install.packages(package)}}     ##gglabeller not available for this version of R  
 
-Packages <- c('ggplot2', 'tidyverse', 'broom', 'car','dplyr','modelr','haven', 'forcats')
+Packages <- c('ggplot2', 'tidyverse', 'broom', 'car','dplyr','modelr','haven', 'forcats', 'estimatr')
 
 lapply(Packages, library, character.only = TRUE)     #to loud more than one package at once
 
@@ -29,8 +30,8 @@ lapply(Packages, library, character.only = TRUE)     #to loud more than one pack
 # Set Working Directory and Import the dataset #
 ################################################
 
-Replication_data <- read_dta("Replication_Dataset.dta")
-
+Replication_data <- read_dta("OriginalFiles/Replication_Dataset.dta")
+plotpath <- ""
 
 ###########
 # Table 1 #
