@@ -4,10 +4,9 @@ p_load(tidyverse, data.table, haven, glue, Hmisc, here)
 rm(list=ls())
 gc()
 
-
 # read in dta file
 survey = read_dta(here::here("OriginalFiles", "Survey.dta"))
-dts    = read_dta(glue("{path_to_project}/OriginalFiles/Replication_Dataset.dta")) %>% data.table()
+dts    = read_dta(here::here("OriginalFiles/Replication_Dataset.dta")) %>% data.table()
 
 # describe datasets
 Hmisc::describe(survey) # ??
@@ -141,7 +140,7 @@ panel_titles$command <- c("Panel A & \\multicolumn{5}{c}{} \\\\ \n",
 # Save
 print(xtable(table_1),
       add.to.row = panel_titles,
-      file = glue("/Users/mclarars/ReplicationGames/our_reproduction/Table1.tex"))
+      file = here("replicated_output/tables/Table1.tex"))
 
 
 
@@ -188,7 +187,7 @@ summary(mod6)
 etable(mod1,mod2,mod3,mod4,mod5,mod6,
        keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
        tex = T,
-       file = glue("/Users/mclarars/ReplicationGames/our_reproduction/Table2.tex"))
+       file = here("replicated_output/tables/Table2.tex"))
 
 # How I would set up the specification: grouping education levels, grouping income, age as non-linear control
 mod1x = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4, 
@@ -229,7 +228,7 @@ summary(mod6x)
 etable(mod1x,mod2x,mod3x,mod4x,mod5x,mod6x,
        keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
        tex = T,
-       file = glue("/Users/mclarars/ReplicationGames/our_reproduction/Table2_Modified.tex"),
+       file = here("replicated_output/tables/Table2_Modified.tex"),
        notes = "\\textit{Notes:} Modified specifications. Fixed effects: grouped education levels, grouped income. Age included as non-linear control.")
 
 
@@ -260,7 +259,7 @@ etable(mod1[1],mod2[1],mod3[1],mod4[1],
        mod1[3],mod2[3],mod3[3],mod4[3],
        keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
        tex = T,
-       file = glue("/Users/mclarars/ReplicationGames/our_reproduction/Table3.tex"))
+       file = here("replicated_output/tables/Table3.tex"))
 
 
 # How I would set up the specification: grouping education levels, grouping income, age as non-linear control
@@ -291,6 +290,83 @@ etable(mod1x[1],mod2x[1],mod3x[1],mod4x[1],
        mod1x[3],mod2x[3],mod3x[3],mod4x[3],
        keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
        tex = T,
-       file = glue("/Users/mclarars/ReplicationGames/our_reproduction/Table3_Modified.tex"),
+       file = here("replicated_output/tables/Table3_Modified.tex"),
+       notes = "\\textit{Notes:} Modified specifications. Fixed effects: grouped education levels, grouped income. Age included as non-linear control.")
+
+#Table 4 -----
+euro_5_noage <- feols(vote_lega_euro ~ dummy_diesel + dummy_euro_5 + dummy_diesel * dummy_euro_5
+                        | EDU1 + EDU2 + EDU3 + EDU4 + income_levels, 
+                      data = dts[!(target %in% c(3, 4) & no_answer_euro == 0), ], 
+                      vcov = 'hetero')
+euro_5_age <- feols(vote_lega_euro ~ dummy_diesel + dummy_euro_5 + dummy_diesel * dummy_euro_5
+                    + age + female | EDU1 + EDU2 + EDU3 + EDU4 + income_levels, 
+                    data = dts[!(target %in% c(3, 4) & no_answer_euro == 0), ], 
+                    vcov = 'hetero')
+euro_5_agex <- feols(vote_lega_euro ~ dummy_diesel + dummy_euro_5 + dummy_diesel * dummy_euro_5
+                     + age + I(age^2) + female | EDU1 + EDU2 + EDU3 + EDU4 + income_levels, 
+                     data = dts[!(target %in% c(3, 4) & no_answer_euro == 0), ], 
+                     vcov = 'hetero')
+
+etable(euro_5_noage, euro_5_age,
+       keep = c("dummy_diesel", "dummy_euro_5"),
+       tex = T,
+       file = here("replicated_output/tables/Table4.tex"),
+       notes = "\\textit{Notes:} Modified specifications. Fixed effects: grouped education levels, grouped income.")
+
+etable(euro_5_noage, euro_5_agex,
+       keep = c("dummy_diesel", "dummy_euro_5"),
+       tex = T,
+       file = here("replicated_output/tables/Table4_Modified.tex"),
+       notes = "\\textit{Notes:} Modified specifications. Fixed effects: grouped education levels, grouped income. Age included as non-linear control.")
+
+
+
+#Table 5 -----
+lega_vote <- feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + diesel_euro4 + 
+                     age + female | EDU1 + EDU2 + EDU3 + EDU4 + income_levels, 
+                   data = dts[!(target %in% c(3, 4)) & no_answer_euro == 0, ], 
+                   vcov = 'hetero')
+lega_votex <- feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + diesel_euro4 + 
+                        age + I(age^2) + female | EDU1 + EDU2 + EDU3 + EDU4 + income_levels, 
+                      data = dts[!(target %in% c(3, 4)) & no_answer_euro == 0, ], 
+                      vcov = 'hetero')
+
+switch_lega_leg <- feols(switch_descriptive ~ dummy_diesel + dummy_euro_4 + diesel_euro4 + 
+                           age + female | EDU1 + EDU2 + EDU3 + EDU4 + income_levels, 
+                         data = dts[!(target %in% c(3, 4)) & no_answer_2018_rob == 0 &
+                                      !vote_lega_2018, ])
+switch_lega_legx <- feols(switch_descriptive ~ dummy_diesel + dummy_euro_4 + diesel_euro4 + 
+                           age + I(age^2) + female | EDU1 + EDU2 + EDU3 + EDU4 + income_levels, 
+                         data = dts[!(target %in% c(3, 4)) & no_answer_2018_rob == 0 &
+                                      !vote_lega_2018, ])
+
+switch_lega_reg <- feols(switch_descriptive_reg ~ dummy_diesel + dummy_euro_4 + diesel_euro4 + 
+                           age + female | EDU1 + EDU2 + EDU3 + EDU4 + income_levels, 
+                         data = dts[!(target %in% c(3, 4)) & no_answer_regional_rob == 0 &
+                                      !vote_lega_regional, ])
+switch_lega_regx <- feols(switch_descriptive_reg ~ dummy_diesel + dummy_euro_4 + diesel_euro4 + 
+                            age + I(age^2) + female | EDU1 + EDU2 + EDU3 + EDU4 + income_levels, 
+                          data = dts[!(target %in% c(3, 4)) & no_answer_regional_rob == 0 &
+                                       !vote_lega_regional, ])
+
+switch_lega_mun <- feols(switch_descriptive_mun ~ dummy_diesel + dummy_euro_4 + diesel_euro4 + 
+                           age + female | EDU1 + EDU2 + EDU3 + EDU4 + income_levels, 
+                         data = dts[!(target %in% c(3, 4)) & no_answer_municipal_rob == 0 &
+                                      !vote_lega_municipal, ])
+switch_lega_munx <- feols(switch_descriptive_mun ~ dummy_diesel + dummy_euro_4 + diesel_euro4 + 
+                            age + I(age^2) + female | EDU1 + EDU2 + EDU3 + EDU4 + income_levels, 
+                          data = dts[!(target %in% c(3, 4)) & no_answer_municipal_rob == 0 &
+                                       !vote_lega_municipal, ])
+
+etable(lega_vote, switch_lega_leg, switch_lega_reg, switch_lega_mun,
+       keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
+       tex = T,
+       file = here("replicated_output/tables/Table5.tex"),
+       notes = "\\textit{Notes:} Modified specifications. Fixed effects: grouped education levels, grouped income.")
+
+etable(lega_votex, switch_lega_legx, switch_lega_regx, switch_lega_munx,
+       keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
+       tex = T,
+       file = here("replicated_output/tables/Table5_Modified.tex"),
        notes = "\\textit{Notes:} Modified specifications. Fixed effects: grouped education levels, grouped income. Age included as non-linear control.")
 
