@@ -23,7 +23,7 @@ We proposed a range of robustness tests. We were able to do a subset of these.
 
 ## Rates of voting for each car group split: implication for identification
 
-We [aimed to] present a simple comparison of the Lega voting rates, voting changes, and other outcomes by each car-ownership group. (see below on functional forms)
+We aimed to present a simple comparison of the Lega voting rates, voting changes, and other outcomes by each car-ownership group. (see below on functional forms)
 
 ## Main results (table 2, recoded)
 

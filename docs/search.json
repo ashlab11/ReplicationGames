@@ -2,23 +2,23 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Replication game notebook: Colantone et al",
+    "title": "Replication game notebook: Colantone et al (2024)",
     "section": "",
-    "text": "We are ‘robustness replicating’ Colantone et al. (2024a) (also noting Colantone et al. (2024b)) for a replication game (see Institute for replication\n\nCodeoptions(knitr.duplicate.label = \"allow\")\n\n\n\n\n\n\n\n\nColantone, Italo, Livio Di Lonardo, Yotam Margalit, and Marco Percoco. 2024a. “The Political Consequences of Green Policies: Evidence from Italy—CORRIGENDUM.” American Political Science Review 118 (1): 545–48.\n\n\n———. 2024b. “The Political Consequences of Green Policies: Evidence from Italy—CORRIGENDUM.” American Political Science Review 118 (1): 545–48."
+    "text": "We are ‘robustness replicating’ Colantone et al. (2024a) (also noting Colantone et al. (2024b)) for a replication game (see Institute for replication).\nAll of our computational replication and additional results should be constructable by sourcing the file main.R in our root directory. (However, packages may need to be installed.)\n\nCodeoptions(knitr.duplicate.label = \"allow\")\n\n\n\n\n\n\n\n\nColantone, Italo, Livio Di Lonardo, Yotam Margalit, and Marco Percoco. 2024a. “The Political Consequences of Green Policies: Evidence from Italy—CORRIGENDUM.” American Political Science Review 118 (1): 545–48.\n\n\n———. 2024b. “The Political Consequences of Green Policies: Evidence from Italy—CORRIGENDUM.” American Political Science Review 118 (1): 545–48."
   },
   {
     "objectID": "chapters/intro.html",
     "href": "chapters/intro.html",
     "title": "1  Overview and approach",
     "section": "",
-    "text": "“The Political Consequences of Green Policies”\nAuthors: …\nNote: the ‘writeup’ will be given in the chapter “A comment on Colantone et al. (2024, APSR)"
+    "text": "“The Political Consequences of Green Policies”\nAuthors: …\nOur ‘writeup’ will be given in the chapter “A comment on Colantone et al. (2024, APSR)."
   },
   {
-    "objectID": "chapters/intro.html#background-and-goals",
-    "href": "chapters/intro.html#background-and-goals",
+    "objectID": "chapters/intro.html#background-and-goalss",
+    "href": "chapters/intro.html#background-and-goalss",
     "title": "1  Overview and approach",
-    "section": "1.2 Background and goals",
-    "text": "1.2 Background and goals\nWe are ‘robustness replicating’ Colantone et al. (2024a) (also noting Colantone et al. (2024b)) for a replication game (see Institute for replication\nMain goals\n\nComputationally reproduce key results (do they computationally hold up, especially the ‘main claims’). See ‘Computational replication’.\nRobustness checks: Consider alternate plausible specifications and approaches. Do the results persist? See ‘Robustness checks’\n\nAspirational: critique methodology, provide further analysis (e.g., multiple hypothesis testing corrections, equivalence tests)"
+    "section": "1.2 Background and goalss",
+    "text": "1.2 Background and goalss\nWe are ‘robustness replicating’ Colantone et al. (2024a) (also noting Colantone et al. (2024b)) for a replication game (see Institute for replication)\nMain goals\n\nComputationally reproduce key results (do they computationally hold up, especially the ‘main claims’). See ‘Computational replication’.\nRobustness checks: Consider alternate plausible specifications and approaches. Do the results persist? See ‘Robustness checks’\n\nAspirational: critique methodology, provide further analysis (e.g., multiple hypothesis testing corrections, equivalence tests)"
   },
   {
     "objectID": "chapters/intro.html#the-papers-main-claim-evidence",
@@ -39,7 +39,7 @@
     "href": "chapters/computational_replication_checking.html#data-sourcing-and-code-structure",
     "title": "2  Computational replication",
     "section": "2.1 Data sourcing and code structure",
-    "text": "2.1 Data sourcing and code structure"
+    "text": "2.1 Data sourcing and code structure\nThe authors provided the data, codebooks, and replication code, linked in their publication and hosted on Harvard Dataverse here. We downloaded these files into the folder OriginalFiles"
   },
   {
     "objectID": "chapters/computational_replication_checking.html#cleaning-and-reconstruction",
@@ -53,7 +53,7 @@
     "href": "chapters/computational_replication_checking.html#stata-part-of-code",
     "title": "2  Computational replication",
     "section": "2.3 ‘Stata’ part of code",
-    "text": "2.3 ‘Stata’ part of code\n\nRe-run Stata analysis code and see if it generates the numbers reported in the text [DONE] (looks good)\n\nSource and documentation:\nFlorian re-ran the do files as found in ‘original files’\n\n“From_Survey_To_Replication_Dataset.do”: contains the Stata commands that allow to create Replication_Dataset.dta, starting from Survey.dta.\n\n\n“Replication_Code_Stata.do”: contains the Stata commands that allow to replicate all the results presented in the paper. It is organized by tables.\n\n(?All results or just regressions?)\nThe .do file doesn’t create tables, it just generates a log file\nTables 2-5. Florian scanned it, saw the results looked similar; same coefficients and standard errors. [Note: this could also be checked in chatgpt.]\nSee the log file: stata_replication_log_20240419.log"
+    "text": "2.3 ‘Stata’ part of code\n\nRe-run Stata analysis code and see if it generates the numbers reported in the text [DONE] (looks good)\n\nSource and documentation:\nFlorian re-ran the do files as found in ‘original files’\n\n“From_Survey_To_Replication_Dataset.do”: contains the Stata commands that allow to create Replication_Dataset.dta, starting from Survey.dta.\n\n\n“Replication_Code_Stata.do”: contains the Stata commands that allow to replicate all the results presented in the paper. It is organized by tables.\n\n(?All results or just regressions?)\nTheir .do file doesn’t create formatted tables, it just generates a log file.\nTables 2-5. Florian scanned it, saw the results looked similar; same coefficients and standard errors.\n\nSee the log file: stata_replication_log_20240419.log"
   },
   {
     "objectID": "chapters/computational_replication_checking.html#r-part-of-the-code",
