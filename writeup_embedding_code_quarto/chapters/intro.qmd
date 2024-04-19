@@ -1,0 +1,94 @@
+# Replicating game: Colantone et al. (2024, APSR)
+
+“The Political Consequences of Green Policies”
+
+Authors: ...
+
+
+## Background and goals
+
+We are 'robustness replicating' Colantone et al (add reference here) for a replication game (see [Institute for replication](i4rep.org)
+
+
+Main goals
+
+1. Computationally reproduce key results (Do they computationally hold up, especially the 'main claims')
+
+2. Robustness checks: Consider alternate plausible specifications and approaches; do the results persist?
+
+3. Methodological (if time permits): critique methodology, provide further analysis (e.g., multiple hypothesis testing corrections, equivalence tests
+
+
+
+
+## IGNORE CONTENT BELOW
+
+
+:::{.callout-note collapse="true"}
+
+## Expand To Learn About Collapse
+
+This is an example of a 'folded' caution callout that can be expanded by the user. You can use `collapse="true"` to collapse it by default or `collapse="false"` to make a collapsible callout that is expanded by default.
+:::
+
+
+## Create an object to see if it crosses chapters
+
+```{r create-xtest}
+
+
+xtest <- 24
+
+```
+
+
+## Example of inline code
+
+Before we defined the object `xtest` (see previous code block). You can also use integrate short code blocks into the narrative using "inline code" ... Type ``r xtest`` and the *value* of the object `xtest` shows up in your code, here `r xtest`.
+
+
+
+
+## Showing some material
+
+What if I want the code to be folded but not to spit results and side effects  onto the screen?
+
+```{r}
+#| results: false
+#| label: hideresults
+
+3+5
+
+a <- "happiness"
+
+```
+
+`r a`
+
+Did it display the sum?  Was the object defined?
+
+
+## Labeling/captioning chunks
+
+Wait, why do we just have 'code' labeling the chunks when you fold them. It would be much more useful to have a descriptive label you can see in the html. We can do this in each chunk with `#| code-summary: "blah blah"`, as below
+
+
+Note: the chunk options content itself is not shown. Below, we have:
+
+```
+#| label: car-talk
+#| code-summary: "Car talk stuff"
+
+head(mtcars)
+
+```
+
+
+```{r}
+#| label: car-talk
+#| code-fold: true
+#| code-summary: "Car talk stuff"
+
+head(mtcars)
+
+```

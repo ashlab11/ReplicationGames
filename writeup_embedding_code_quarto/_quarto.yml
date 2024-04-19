@@ -1,0 +1,49 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Replication game: Colantone et al"
+  author: "David Reinstein"
+  repo-url: https://github.com/daaronr/dr_quarto_template/
+  repo-actions: [edit, issue]
+  chapters:
+    - index.qmd
+    - chapters/intro.qmd
+    - chapters/summary.qmd
+    - references.qmd
+  reader-mode: true
+  page-navigation: true
+  date: today
+
+execute:
+  freeze: auto # re-render only when source changes
+  warning: false
+  message: false
+  error: true
+
+comments:
+    hypothesis: true
+
+bibliography: references.bib
+
+format:
+  html:
+    code-fold: true
+    code-link: true #note: this isn't working for me
+    code-tools: true
+    theme: cosmo
+    citations-hover: true
+    footnotes-hover: true
+    #css: styles.css
+
+    # margin-right: 0.5em
+    #  margin-left: 0.5em
+    #  max-width: 3200px
+ # pdf:
+  #  documentclass: scrreprt
+  #
+
+
+#editor: visual
+

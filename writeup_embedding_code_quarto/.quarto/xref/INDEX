@@ -1,0 +1,14 @@
+{
+  "index.qmd": {
+    "index.html": "e266cb74"
+  },
+  "chapters/intro.qmd": {
+    "intro.html": "4dab6779"
+  },
+  "chapters/summary.qmd": {
+    "summary.html": "0ca401d4"
+  },
+  "references.qmd": {
+    "references.html": "ce697285"
+  }
+}
