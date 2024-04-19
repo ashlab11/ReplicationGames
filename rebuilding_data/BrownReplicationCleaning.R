@@ -199,7 +199,7 @@ our_data <- our_data %>%
       !vote_lega_2018 & !vote_lega_euro & (no_answer_2018_rob == 0) ~ 0,
       TRUE ~ NA_real_
     ),
-    switch_descriptive_mun = case_when(
+   switch_descriptive_mun = case_when(
       !vote_lega_municipal & vote_lega_euro & (no_answer_municipal_rob == 0) ~ 1,
       !vote_lega_municipal & !vote_lega_euro & (no_answer_municipal_rob == 0) ~ 0,
       TRUE ~ NA_real_),
