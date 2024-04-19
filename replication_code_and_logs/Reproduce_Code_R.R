@@ -140,6 +140,7 @@ panel_titles$command <- c("Panel A & \\multicolumn{5}{c}{} \\\\ \n",
                           "Panel C (Alt.) & \\multicolumn{5}{c}{} \\\\ \n",
                           "Panel D & \\multicolumn{5}{c}{} \\\\ \n")
 
+# Save
 print(xtable(table_1),
       add.to.row = panel_titles,
       file = glue("/Users/mclarars/ReplicationGames/our_reproduction/Table1.tex"))
@@ -147,10 +148,151 @@ print(xtable(table_1),
 
 
 # Table 2 ------
+
+# Keep the same choices made by the authors
 library(fixest)
 
-mod1 = lm(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4, data = dts[target!=3 & target!=4 & no_answer_euro==0, ])
+mod1 = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0, ])
 summary(mod1)
 
-mod1_allrespondents = lm(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4, data = dts[no_answer_euro==0, ])
-summary(mod1_allrespondents)
+mod2 = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + as.factor(female) | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0, ],
+             vcov = "hetero")
+summary(mod2)
+
+mod3 = feols(vote_lega_euro ~ dummy_diesel_ass + dummy_euro_4_ass + diesel_euro4_ass
+             + age + female + dummy_car_unknown | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & no_answer_euro==0, ],
+             vcov = "hetero")
+summary(mod3)
+
+mod4 = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_lega_2018 | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_2018==0, ],
+             vcov = "hetero")
+summary(mod4)
+
+mod5 = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_lega_regional | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_regional==0, ],
+             vcov = "hetero")
+summary(mod5)
+
+mod6 = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_lega_municipal | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_municipal==0, ],
+             vcov = "hetero")
+summary(mod6)
+
+# Save
+etable(mod1,mod2,mod3,mod4,mod5,mod6,
+       keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
+       tex = T,
+       file = glue("/Users/mclarars/ReplicationGames/our_reproduction/Table2.tex"))
+
+# How I would set up the specification: grouping education levels, grouping income, age as non-linear control
+mod1x = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0, ])
+summary(mod1x)
+
+mod2x = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + as.factor(age) + as.factor(female) | education_levels_alt + income_levels, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0, ],
+             vcov = "hetero")
+summary(mod2x)
+
+mod3x = feols(vote_lega_euro ~ dummy_diesel_ass + dummy_euro_4_ass + diesel_euro4_ass
+             + as.factor(age) + female + dummy_car_unknown | education_levels_alt + income_levels, 
+             data = dts[target!=3 & no_answer_euro==0, ],
+             vcov = "hetero")
+summary(mod3x)
+
+mod4x = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + as.factor(age) + female + vote_lega_2018 | education_levels_alt + income_levels, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_2018==0, ],
+             vcov = "hetero")
+summary(mod4x)
+
+mod5x = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + as.factor(age) + female + vote_lega_regional | education_levels_alt + income_levels, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_regional==0, ],
+             vcov = "hetero")
+summary(mod5x)
+
+mod6x = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + as.factor(age) + female + vote_lega_municipal | education_levels_alt + income_levels, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_municipal==0, ],
+             vcov = "hetero")
+summary(mod6x)
+
+# Save
+etable(mod1x,mod2x,mod3x,mod4x,mod5x,mod6x,
+       keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
+       tex = T,
+       file = glue("/Users/mclarars/ReplicationGames/our_reproduction/Table2_Modified.tex"),
+       notes = "\\textit{Notes:} Modified specifications. Fixed effects: grouped education levels, grouped income. Age included as non-linear control.")
+
+
+# Table 3 ------
+mod1 = feols(c(vote_pd_euro,vote_forzaitalia_euro,vote_m5s_euro) ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+              + age + female | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+              data = dts[target!=3 & target!=4 & no_answer_euro==0, ],
+              vcov = "hetero")
+
+mod2 = feols(c(vote_pd_euro,vote_forzaitalia_euro,vote_m5s_euro) ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_m5s_2018 | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_2018==0, ],
+             vcov = "hetero")
+
+mod3 = feols(c(vote_pd_euro,vote_forzaitalia_euro,vote_m5s_euro) ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_m5s_regional | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_regional==0, ],
+             vcov = "hetero")
+
+mod4 = feols(c(vote_pd_euro,vote_forzaitalia_euro,vote_m5s_euro) ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_m5s_municipal | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_municipal==0, ],
+             vcov = "hetero")
+
+# Save
+etable(mod1[1],mod2[1],mod3[1],mod4[1],
+       mod1[2],mod2[2],mod3[2],mod4[2],
+       mod1[3],mod2[3],mod3[3],mod4[3],
+       keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
+       tex = T,
+       file = glue("/Users/mclarars/ReplicationGames/our_reproduction/Table3.tex"))
+
+
+# How I would set up the specification: grouping education levels, grouping income, age as non-linear control
+mod1x = feols(c(vote_pd_euro,vote_forzaitalia_euro,vote_m5s_euro) ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female | education_levels_alt + income_levels, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0, ],
+             vcov = "hetero")
+
+mod2x = feols(c(vote_pd_euro,vote_forzaitalia_euro,vote_m5s_euro) ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_m5s_2018 | education_levels_alt + income_levels, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_2018==0, ],
+             vcov = "hetero")
+
+mod3x = feols(c(vote_pd_euro,vote_forzaitalia_euro,vote_m5s_euro) ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_m5s_regional | education_levels_alt + income_levels, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_regional==0, ],
+             vcov = "hetero")
+
+mod4x = feols(c(vote_pd_euro,vote_forzaitalia_euro,vote_m5s_euro) ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_m5s_municipal | education_levels_alt + income_levels, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_municipal==0, ],
+             vcov = "hetero")
+
+
+# Save
+etable(mod1x[1],mod2x[1],mod3x[1],mod4x[1],
+       mod1x[2],mod2x[2],mod3x[2],mod4x[2],
+       mod1x[3],mod2x[3],mod3x[3],mod4x[3],
+       keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
+       tex = T,
+       file = glue("/Users/mclarars/ReplicationGames/our_reproduction/Table3_Modified.tex"),
+       notes = "\\textit{Notes:} Modified specifications. Fixed effects: grouped education levels, grouped income. Age included as non-linear control.")
+
