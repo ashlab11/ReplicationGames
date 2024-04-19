@@ -425,7 +425,7 @@ coefplot_2016Municipal<-
        colour="", fill="", shape="", group="" ) 
 
 ggsave(coefplot_2016Municipal, dpi = 400,
-       filename = paste0(plotpath, "Figure4_c.png"),
+       filename = here(plotpath, "figures", "Figure4_c.png"),
        height = 4, width = 10, device = "png")
 
 
