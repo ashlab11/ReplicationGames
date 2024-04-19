@@ -31,3 +31,36 @@
 \par\endgroup
 
 
+
+\begingroup
+\centering
+\begin{tabular}{lcccccc}
+   \tabularnewline \midrule \midrule
+   Dependent Variable: & \multicolumn{6}{c}{vote\_lega\_euro}\\
+   Model:           & (1)           & (2)           & (3)           & (4)           & (5)          & (6)\\  
+   \midrule
+   \emph{Variables}\\
+   diesel\_euro4    & 0.1195        & 0.1816$^{**}$ & 0.1374$^{*}$  & 0.1043$^{**}$ & 0.0964$^{*}$ & 0.1520$^{**}$\\   
+                    & (0.0751)      & (0.0802)      & (0.0792)      & (0.0480)      & (0.0537)     & (0.0625)\\   
+   dummy\_diesel    & -0.0932$^{*}$ & -0.1119$^{*}$ & -0.1018$^{*}$ & -0.0244       & -0.0057      & -0.0091\\   
+                    & (0.0556)      & (0.0580)      & (0.0565)      & (0.0370)      & (0.0416)     & (0.0498)\\   
+   dummy\_euro\_4   & -0.0478       & -0.0276       & -0.0229       & 0.0276        & 0.0418       & -0.0107\\   
+                    & (0.0583)      & (0.0599)      & (0.0599)      & (0.0345)      & (0.0375)     & (0.0445)\\   
+   \midrule
+   \emph{Fixed-effects}\\
+   age\_cat         &               & Yes           & Yes           & Yes           & Yes          & Yes\\  
+   female           &               & Yes           & Yes           & Yes           & Yes          & Yes\\  
+   education\_raw   &               & Yes           & Yes           & Yes           & Yes          & Yes\\  
+   income\_raw      &               & Yes           & Yes           & Yes           & Yes          & Yes\\  
+   \midrule
+   \emph{Fit statistics}\\
+   Observations     & 602           & 602           & 665           & 583           & 551          & 533\\  
+   R$^2$            & 0.00499       & 0.15766       & 0.16711       & 0.63149       & 0.61503      & 0.53068\\  
+   Within R$^2$     &               & 0.01611       & 0.02722       & 0.56506       & 0.54140      & 0.43453\\  
+   \midrule \midrule
+   \multicolumn{7}{l}{\emph{Heteroskedasticity-robust standard-errors in parentheses}}\\
+   \multicolumn{7}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+\end{tabular}
+\par\endgroup
+
+

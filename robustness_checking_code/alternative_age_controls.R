@@ -196,9 +196,9 @@ mod3 <- feols(
     ),
   fml = 
     vote_lega_euro ~
-    diesel_euro4
-  + dummy_diesel
-  + dummy_euro_4
+    diesel_euro4_ass
+  + dummy_diesel_ass
+  + dummy_euro_4_ass
   + dummy_car_unknown
   + age
   + age^2
