@@ -143,7 +143,6 @@ print(xtable(table_1),
       file = here("replicated_output/tables/Table1.tex"))
 
 
-
 # Table 2 ------
 
 # Keep the same choices made by the authors
@@ -183,12 +182,10 @@ mod6 = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_e
              vcov = "hetero")
 summary(mod6)
 
-# Save
 etable(mod1,mod2,mod3,mod4,mod5,mod6,
        keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
-       tex = T,
-       replace = T,
-       file = here("replicated_output/tables/Table2.tex"))
+       tex = T, replace = T,
+       file = glue("/Users/mclarars/ReplicationGames/replicated_output/tables/Table2.tex"))
 
 # How I would set up the specification: grouping education levels, grouping income, age as non-linear control
 mod1x = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4, 
@@ -196,42 +193,40 @@ mod1x = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_
 summary(mod1x)
 
 mod2x = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
-             + as.factor(age) + as.factor(female) | education_levels_alt + income_levels, 
+             + age_cat + as.factor(female) | education_wo_miss + income_wo_miss, 
              data = dts[target!=3 & target!=4 & no_answer_euro==0, ],
              vcov = "hetero")
 summary(mod2x)
 
 mod3x = feols(vote_lega_euro ~ dummy_diesel_ass + dummy_euro_4_ass + diesel_euro4_ass
-             + as.factor(age) + female + dummy_car_unknown | education_levels_alt + income_levels, 
+             + age_cat + female + dummy_car_unknown | education_wo_miss + income_wo_miss, 
              data = dts[target!=3 & no_answer_euro==0, ],
              vcov = "hetero")
 summary(mod3x)
 
 mod4x = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
-             + as.factor(age) + female + vote_lega_2018 | education_levels_alt + income_levels, 
+             + age_cat + female + vote_lega_2018 | education_wo_miss + income_wo_miss, 
              data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_2018==0, ],
              vcov = "hetero")
 summary(mod4x)
 
 mod5x = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
-             + as.factor(age) + female + vote_lega_regional | education_levels_alt + income_levels, 
+             + age_cat + female + vote_lega_regional | education_wo_miss + income_wo_miss, 
              data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_regional==0, ],
              vcov = "hetero")
 summary(mod5x)
 
 mod6x = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
-             + as.factor(age) + female + vote_lega_municipal | education_levels_alt + income_levels, 
+             + age_cat + female + vote_lega_municipal | education_wo_miss + income_wo_miss, 
              data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_municipal==0, ],
              vcov = "hetero")
 summary(mod6x)
 
-# Save
 etable(mod1x,mod2x,mod3x,mod4x,mod5x,mod6x,
        keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
-       tex = T,
-       replace = T,
-       file = here("replicated_output/tables/Table2_Modified.tex"),
-       notes = "\\textit{Notes:} Modified specifications. Fixed effects: grouped education levels, grouped income. Age included as non-linear control.")
+       tex = T, replace = T,
+       file = glue("/Users/mclarars/ReplicationGames/replicated_output/tables/Table2_Modified.tex"),
+       notes = "\\textit{Notes:} Modified specifications. Controlling for 5 age bins instead of linear age. Observations with missing responses for education level and income dropped.")
 
 
 # Table 3 ------
@@ -255,47 +250,44 @@ mod4 = feols(c(vote_pd_euro,vote_forzaitalia_euro,vote_m5s_euro) ~ dummy_diesel 
              data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_municipal==0, ],
              vcov = "hetero")
 
-# Save
 etable(mod1[1],mod2[1],mod3[1],mod4[1],
        mod1[2],mod2[2],mod3[2],mod4[2],
        mod1[3],mod2[3],mod3[3],mod4[3],
        keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
-       tex = T,
-       replace = T,
-       file = here("replicated_output/tables/Table3.tex"))
+       tex = T, replace = T,
+       file = glue("/Users/mclarars/ReplicationGames/replicated_output/tables/Table3.tex"))
 
 
 # How I would set up the specification: grouping education levels, grouping income, age as non-linear control
 mod1x = feols(c(vote_pd_euro,vote_forzaitalia_euro,vote_m5s_euro) ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
-             + age + female | education_levels_alt + income_levels, 
+             + age_cat + female | education_wo_miss + income_wo_miss, 
              data = dts[target!=3 & target!=4 & no_answer_euro==0, ],
              vcov = "hetero")
 
 mod2x = feols(c(vote_pd_euro,vote_forzaitalia_euro,vote_m5s_euro) ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
-             + age + female + vote_m5s_2018 | education_levels_alt + income_levels, 
+             + age_cat + female + vote_m5s_2018 | education_wo_miss + income_wo_miss, 
              data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_2018==0, ],
              vcov = "hetero")
 
 mod3x = feols(c(vote_pd_euro,vote_forzaitalia_euro,vote_m5s_euro) ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
-             + age + female + vote_m5s_regional | education_levels_alt + income_levels, 
+             + age_cat + female + vote_m5s_regional | education_wo_miss + income_wo_miss, 
              data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_regional==0, ],
              vcov = "hetero")
 
 mod4x = feols(c(vote_pd_euro,vote_forzaitalia_euro,vote_m5s_euro) ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
-             + age + female + vote_m5s_municipal | education_levels_alt + income_levels, 
+             + age_cat + female + vote_m5s_municipal | education_wo_miss + income_wo_miss, 
              data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_municipal==0, ],
              vcov = "hetero")
 
 
-# Save
+
 etable(mod1x[1],mod2x[1],mod3x[1],mod4x[1],
        mod1x[2],mod2x[2],mod3x[2],mod4x[2],
        mod1x[3],mod2x[3],mod3x[3],mod4x[3],
        keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
-       tex = T,
-       replace = T,
-       file = here("replicated_output/tables/Table3_Modified.tex"),
-       notes = "\\textit{Notes:} Modified specifications. Fixed effects: grouped education levels, grouped income. Age included as non-linear control.")
+       tex = T, replace = T,
+       file = glue("/Users/mclarars/ReplicationGames/replicated_output/tables/Table3_Modified.tex"),
+       notes = "\\textit{Notes:} Modified specifications. Controlling for 5 age bins instead of linear age. Observations with missing responses for education level and income dropped.")
 
 #Table 4 -----
 euro_5_noage <- feols(vote_lega_euro ~ dummy_diesel + dummy_euro_5 + dummy_diesel * dummy_euro_5
