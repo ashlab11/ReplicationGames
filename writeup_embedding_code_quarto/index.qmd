@@ -1,9 +1,8 @@
 # Preface {.unnumbered}
 
+We are 'robustness replicating' @colantone2024political (also noting @colantone2024political_cor) for a replication game (see [Institute for replication](i4rep.org))
 
-We are 'robustness replicating' @colantone2024political (also noting @colantone2024political_cor) for a replication game (see [Institute for replication](i4rep.org)
-
-
+All of our computational replication and additional results should be constructable by sourcing the file `main.R` in our root directory. (However, packages may need to be installed.)
 
 ```{r}
 options(knitr.duplicate.label = "allow")

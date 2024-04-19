@@ -5,7 +5,6 @@
 library(pacman)
 p_load(tidyverse, data.table, haven, glue, Hmisc, here, fixest, xtable)
 
-rm(list=ls())
 gc()
 
 
@@ -13,7 +12,9 @@ gc()
 
 survey = read_dta(here::here("OriginalFiles", "Survey.dta"))
 
-dts = read_dta(here::here("OriginalFiles", "Replication_Dataset.dta")) %>% data.table()
+#dts = read_dta(here::here("OriginalFiles", "Replication_Dataset.dta")) %>% data.table()
+dts = as.data.table(data_replication)
+
 
 
 # describe datasets
@@ -339,7 +340,7 @@ etable(mod1x[1],mod2x[1],mod3x[1],mod4x[1],
        mod1x[3],mod2x[3],mod3x[3],mod4x[3],
        keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
        tex = T, replace = T, fitstat=~my, digits = 3,
-       file = glue("/Users/mclarars/ReplicationGames/replicated_output/tables/Table3_Modified.tex"),
+       file = here("replicated_output", "tables", "Table3_Modified.tex"),
        notes = "\\textit{Notes:} Modified specifications. Controlling for 5 age bins instead of linear age. Observations with missing responses for education level and income dropped.")
 
 #Table 4 -----
