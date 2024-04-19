@@ -1,3 +1,6 @@
+# Based on code provided by authors. All modifications are proceeded by "CR"
+
+
 # This R-Script allows to replicate Table 1, Figure 3, and all the coefficient plots presented in the paper.
 
 # The analysis was performed on R Version 4.1.2
@@ -30,20 +33,21 @@ library(pacman)
 p_load(estimatr)
 
 # CR: Clara's addition
+p_load(here)
 library(glue)
 
 ################################################
-# Set Working Directory and Import the dataset #
+# Import the dataset #
 ################################################
 
 # CR: Clara's addition
-path_to_project = "/Users/mclarars/ReplicationGames"
 
 # import data
-Replication_data <- read_dta(glue("{path_to_project}/OriginalFiles/Replication_Dataset.dta"))
+Replication_data = read_dta(here::here("OriginalFiles", "Replication_Dataset.dta"))
+
 
 # CR: plotpath missing
-plotpath = glue("{path_to_project}/replicated_output/R/")
+plotpath = here::here("replicated_output")
 
 
 ###########
@@ -187,7 +191,7 @@ combined_table <- rbind(age_combined, income_combined, education_combined, gende
 
 # CR: Save table with xtable. Looks like they include the package but not the command
 print(xtable(combined_table),
-      file = glue("{plotpath}Table1.tex"))
+      file = here::here(plotpath, "tables", "Table1.tex"))
 
 
 ############
@@ -224,7 +228,7 @@ Figure3 <- Replication_data %>%
        colour="", fill="", shape="", group="" ) +coord_flip()
 
 ggsave(Figure3, dpi = 1000,
-       filename = paste0(plotpath, "Figure3_v3.png"),
+       filename = here(plotpath, "figures", "Figure3_v3.png"),
        height = 4, width = 7, device = "png")
 
 
@@ -241,6 +245,7 @@ Legaswitch_legis_lm_cont<-lm_robust(sw_to_lega_18_19~dummy_diesel+dummy_euro_4+d
                                       age+female+EDU+INC, 
                                     data=Replication_data, subset=c(target!=3 & target!=4 & 
                                                                       no_answer_euro==0  & no_answer_2018==0))
+
 # 3. Including unkowncar and assigning the treatment
 Legaswitch_legis_lm_cont_Unknowncar<-lm_robust(sw_to_lega_18_19~dummy_diesel_ass+dummy_euro_4_ass+diesel_euro4_ass+
                                                  age+female+EDU+INC+dummy_car_unknown, 
@@ -293,7 +298,7 @@ coefplot_2018Legislative<-
        colour="", fill="", shape="", group="" ) 
 
 ggsave(coefplot_2018Legislative, dpi = 400,
-       filename = paste0(plotpath, "Figure4_a.png"),
+  filename = here(plotpath, "figures", "Figure4_a.png"),
        height = 4, width = 10, device = "png")
 
 # Panel (b) From Regional Elections 2018 --------
@@ -355,7 +360,7 @@ coefplot_2019Regional<-
        colour="", fill="", shape="", group="" ) 
 
 ggsave(coefplot_2019Regional, dpi = 400,
-       filename = paste0(plotpath, "Figure4_b.png"),
+       filename = here(plotpath, "figures", "Figure4_b.png"),
        height = 4, width = 10, device = "png")
 
 # Panel (c) From Municipal Elections 2016  ----------
@@ -545,7 +550,7 @@ coef_switch_16_19_placebo<- ggplot(switch_16_19_placebo, aes(Model2, estimate))+
        colour="", fill="", shape="", group="" ) + facet_wrap(facets=~election18,nrow=1)
 
 ggsave(coef_switch_16_19_placebo, dpi = 400,
-       filename = paste0(plotpath, "Figure6.png"),
+       filename = here(plotpath, "figures", "Figure6.png"),
        height = 4, width = 12, device = "png")
 
 
@@ -655,7 +660,7 @@ coefplot_eco_Behavioral_2<-
        colour="", fill="", shape="", group="" ) 
 
 ggsave(coefplot_eco_Behavioral_2, dpi = 400,
-       filename = paste0(plotpath, "Figure7_a.png"),
+       filename = here(plotpath,"figures", "Figure7_a.png"),
        height = 5, width = 5.5, device = "png")
 
 # Panel (b) Global Level (ZeroCO2)  ---------
@@ -742,7 +747,7 @@ coefplot_ZeroCO2<-
        colour="", fill="", shape="", group="" ) 
 
 ggsave(coefplot_ZeroCO2, dpi = 1000,
-       filename = paste0(plotpath, "Figure7_b.png"),
+       filename = here(plotpath, "figures", "Figure7_b.png"),
        height = 5, width = 6, device = "png")
 
 # Panel (c) Local Level (Genitori Antismog) 
@@ -812,7 +817,7 @@ coefplot_Genitorianti_smog<-
        colour="", fill="", shape="", group="" ) 
 
 ggsave(coefplot_Genitorianti_smog, dpi = 1000,
-       filename = paste0(plotpath, "Figure7_c.png"),
+       filename = here(plotpath, "figures", "Figure7_c.png"),
        height = 5, width = 6, device = "png")
 
 
@@ -880,7 +885,7 @@ coefplot_ptr<-
        colour="", fill="", shape="", group="" ) 
 
 ggsave(coefplot_ptr, dpi = 400,
-       filename = paste0(plotpath, "Figure8.png"),
+       filename = here(plotpath, "figures", "Figure8.png"),
        height = 5, width = 7, device = "png")
 
 
