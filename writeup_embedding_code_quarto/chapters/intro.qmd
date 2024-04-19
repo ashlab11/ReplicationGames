@@ -43,67 +43,6 @@ Background: \"The policy identifies the most polluting categories of vehicles an
 
 > electoral change did not stem from a broader shift against environmentalism, but rather from disaffection with the policy\'s uneven pocketbook implications
 
-They also, \~'people who were *compensated* did *not* shift in response to the policy'
+They also, \~'people who were *compensated* did *not* shift in response to the policy'.
 
 These are implicitly claims of (1) null or bounded effects and (2) *differential* effects (for those compensated vs. those not compensated.) This is important to the authors' theoretical interpretation of the effect, and its generalization to political behavior as a whole.
-
-## IGNORE CONTENT BELOW
-
-::: {.callout-note collapse="true"}
-## Expand To Learn About Collapse
-
-This is an example of a 'folded' caution callout that can be expanded by the user. You can use `collapse="true"` to collapse it by default or `collapse="false"` to make a collapsible callout that is expanded by default.
-:::
-
-## Create an object to see if it crosses chapters
-
-```{r create-xtest}
-
-
-xtest <- 24
-
-```
-
-## Example of inline code
-
-Before we defined the object `xtest` (see previous code block). You can also use integrate short code blocks into the narrative using "inline code" ... Type `r xtest` and the *value* of the object `xtest` shows up in your code, here `r xtest`.
-
-## Showing some material
-
-What if I want the code to be folded but not to spit results and side effects onto the screen?
-
-```{r}
-#| results: false
-#| label: hideresults
-
-3+5
-
-a <- "happiness"
-
-```
-
-`r a`
-
-Did it display the sum? Was the object defined?
-
-## Labeling/captioning chunks
-
-Wait, why do we just have 'code' labeling the chunks when you fold them. It would be much more useful to have a descriptive label you can see in the html. We can do this in each chunk with `#| code-summary: "blah blah"`, as below
-
-Note: the chunk options content itself is not shown. Below, we have:
-
-```         
-#| label: car-talk
-#| code-summary: "Car talk stuff"
-
-head(mtcars)
-```
-
-```{r}
-#| label: car-talk
-#| code-fold: true
-#| code-summary: "Car talk stuff"
-
-head(mtcars)
-
-```

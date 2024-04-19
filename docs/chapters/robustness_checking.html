@@ -136,7 +136,8 @@ div.csl-indent {
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit"
   }
-}</script><script async="" src="https://hypothes.is/embed.js"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+}</script><script async="" src="https://hypothes.is/embed.js"></script><script src="../site_libs/kePrint-0.0.1/kePrint.js"></script><link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
 <body class="nav-sidebar floating">
 
@@ -205,13 +206,14 @@ div.csl-indent {
    
   <ul>
 <li><a href="#rates-of-voting-for-each-car-group-split-implication-for-identification" id="toc-rates-of-voting-for-each-car-group-split-implication-for-identification" class="nav-link active" data-scroll-target="#rates-of-voting-for-each-car-group-split-implication-for-identification"><span class="toc-section-number">3.1</span>  Rates of voting for each car group split: implication for identification</a></li>
-  <li><a href="#alternate-controltreatment-splits" id="toc-alternate-controltreatment-splits" class="nav-link" data-scroll-target="#alternate-controltreatment-splits"><span class="toc-section-number">3.2</span>  Alternate control/treatment splits</a></li>
-  <li><a href="#functional" id="toc-functional" class="nav-link" data-scroll-target="#functional"><span class="toc-section-number">3.3</span>  Functional form</a></li>
+  <li><a href="#main-results-table-2-recoded" id="toc-main-results-table-2-recoded" class="nav-link" data-scroll-target="#main-results-table-2-recoded"><span class="toc-section-number">3.2</span>  Main results (table 2, recoded)</a></li>
+  <li><a href="#alternate-controltreatment-splits" id="toc-alternate-controltreatment-splits" class="nav-link" data-scroll-target="#alternate-controltreatment-splits"><span class="toc-section-number">3.3</span>  Alternate control/treatment splits</a></li>
+  <li><a href="#functional" id="toc-functional" class="nav-link" data-scroll-target="#functional"><span class="toc-section-number">3.4</span>  Functional form</a></li>
   </ul></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span id="robustness" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Robustness checking and exploration</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span id="robustness" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Robustness checking and exploration</span></span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
 </div>
 
 
@@ -224,15 +226,259 @@ div.csl-indent {
   
 
 </header><div class="cell">
-
+<details><summary>Input cleaned data</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/trinker/pacman">pacman</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/pacman/man/p_load.html">p_load</a></span><span class="op">(</span><span class="va">tidyverse</span>, <span class="va">data.table</span>, <span class="va">haven</span>, <span class="va">glue</span>, <span class="va">Hmisc</span>, <span class="va">here</span>, <span class="va">fixest</span>, <span class="va">knitr</span>, <span class="va">kableExtra</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/rm.html">rm</a></span><span class="op">(</span>list<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/ls.html">ls</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/gc.html">gc</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output cell-output-stdout">
+<pre><code>          used (Mb) gc trigger  (Mb) limit (Mb) max used (Mb)
+Ncells 1189471 63.6    2353322 125.7         NA  1691092 90.4
+Vcells 2008778 15.4    8388608  64.0      32768  2750556 21.0</code></pre>
 </div>
+<details><summary>Input cleaned data</summary><div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># read in dta file, Clara likes working with data table format</span></span>
+<span><span class="va">survey</span> <span class="op">=</span> <span class="fu">read_dta</span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"OriginalFiles"</span>, <span class="st">"Survey.dta"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">dts</span> <span class="op">=</span> <span class="fu">read_dta</span><span class="op">(</span><span class="fu">here</span><span class="fu">::</span><span class="fu"><a href="https://here.r-lib.org//reference/here.html">here</a></span><span class="op">(</span><span class="st">"OriginalFiles"</span>, <span class="st">"Replication_Dataset.dta"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">data.table</span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>We proposed a range of robustness tests. We were able to do a subset of these.</p>
 <section id="rates-of-voting-for-each-car-group-split-implication-for-identification" class="level2" data-number="3.1"><h2 data-number="3.1" class="anchored" data-anchor-id="rates-of-voting-for-each-car-group-split-implication-for-identification">
 <span class="header-section-number">3.1</span> Rates of voting for each car group split: implication for identification</h2>
-<p>We present a simple comparison of the Lega voting rates, voting changes, and other outcomes by each car-ownership group. (see below on functional forms)</p>
-</section><section id="alternate-controltreatment-splits" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="alternate-controltreatment-splits">
-<span class="header-section-number">3.2</span> Alternate control/treatment splits</h2>
-</section><section id="functional" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="functional">
-<span class="header-section-number">3.3</span> Functional form</h2>
+<p>We [aimed to] present a simple comparison of the Lega voting rates, voting changes, and other outcomes by each car-ownership group. (see below on functional forms)</p>
+</section><section id="main-results-table-2-recoded" class="level2" data-number="3.2"><h2 data-number="3.2" class="anchored" data-anchor-id="main-results-table-2-recoded">
+<span class="header-section-number">3.2</span> Main results (table 2, recoded)</h2>
+<div class="cell">
+<details><summary>Table 2 recoded</summary><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># Table 2 ------</span></span>
+<span></span>
+<span><span class="co"># Keep the same choices made by the authors</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lrberge.github.io/fixest/">fixest</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod1</span> <span class="op">=</span> <span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html">feols</a></span><span class="op">(</span><span class="va">vote_lega_euro</span> <span class="op">~</span> <span class="va">dummy_diesel</span> <span class="op">+</span> <span class="va">dummy_euro_4</span> <span class="op">+</span> <span class="va">dummy_diesel</span><span class="op">*</span><span class="va">dummy_euro_4</span>, </span>
+<span>             data <span class="op">=</span> <span class="va">dts</span><span class="op">[</span><span class="va">target</span><span class="op">!=</span><span class="fl">3</span> <span class="op">&amp;</span> <span class="va">target</span><span class="op">!=</span><span class="fl">4</span> <span class="op">&amp;</span> <span class="va">no_answer_euro</span><span class="op">==</span><span class="fl">0</span>, <span class="op">]</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod2</span> <span class="op">=</span> <span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html">feols</a></span><span class="op">(</span><span class="va">vote_lega_euro</span> <span class="op">~</span> <span class="va">dummy_diesel</span> <span class="op">+</span> <span class="va">dummy_euro_4</span> <span class="op">+</span> <span class="va">dummy_diesel</span><span class="op">*</span><span class="va">dummy_euro_4</span></span>
+<span>             <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span><span class="op">(</span><span class="va">female</span><span class="op">)</span> <span class="op">|</span> <span class="va">EDU1</span> <span class="op">+</span> <span class="va">EDU2</span> <span class="op">+</span> <span class="va">EDU3</span> <span class="op">+</span> <span class="va">EDU4</span> <span class="op">+</span> <span class="va">profile_gross_personal_eu</span>, </span>
+<span>             data <span class="op">=</span> <span class="va">dts</span><span class="op">[</span><span class="va">target</span><span class="op">!=</span><span class="fl">3</span> <span class="op">&amp;</span> <span class="va">target</span><span class="op">!=</span><span class="fl">4</span> <span class="op">&amp;</span> <span class="va">no_answer_euro</span><span class="op">==</span><span class="fl">0</span>, <span class="op">]</span>,</span>
+<span>             vcov <span class="op">=</span> <span class="st">"hetero"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod3</span> <span class="op">=</span> <span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html">feols</a></span><span class="op">(</span><span class="va">vote_lega_euro</span> <span class="op">~</span> <span class="va">dummy_diesel_ass</span> <span class="op">+</span> <span class="va">dummy_euro_4_ass</span> <span class="op">+</span> <span class="va">diesel_euro4_ass</span></span>
+<span>             <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">dummy_car_unknown</span> <span class="op">|</span> <span class="va">EDU1</span> <span class="op">+</span> <span class="va">EDU2</span> <span class="op">+</span> <span class="va">EDU3</span> <span class="op">+</span> <span class="va">EDU4</span> <span class="op">+</span> <span class="va">profile_gross_personal_eu</span>, </span>
+<span>             data <span class="op">=</span> <span class="va">dts</span><span class="op">[</span><span class="va">target</span><span class="op">!=</span><span class="fl">3</span> <span class="op">&amp;</span> <span class="va">no_answer_euro</span><span class="op">==</span><span class="fl">0</span>, <span class="op">]</span>,</span>
+<span>             vcov <span class="op">=</span> <span class="st">"hetero"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod4</span> <span class="op">=</span> <span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html">feols</a></span><span class="op">(</span><span class="va">vote_lega_euro</span> <span class="op">~</span> <span class="va">dummy_diesel</span> <span class="op">+</span> <span class="va">dummy_euro_4</span> <span class="op">+</span> <span class="va">dummy_diesel</span><span class="op">*</span><span class="va">dummy_euro_4</span></span>
+<span>             <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">vote_lega_2018</span> <span class="op">|</span> <span class="va">EDU1</span> <span class="op">+</span> <span class="va">EDU2</span> <span class="op">+</span> <span class="va">EDU3</span> <span class="op">+</span> <span class="va">EDU4</span> <span class="op">+</span> <span class="va">profile_gross_personal_eu</span>, </span>
+<span>             data <span class="op">=</span> <span class="va">dts</span><span class="op">[</span><span class="va">target</span><span class="op">!=</span><span class="fl">3</span> <span class="op">&amp;</span> <span class="va">target</span><span class="op">!=</span><span class="fl">4</span> <span class="op">&amp;</span> <span class="va">no_answer_euro</span><span class="op">==</span><span class="fl">0</span> <span class="op">&amp;</span> <span class="va">no_answer_2018</span><span class="op">==</span><span class="fl">0</span>, <span class="op">]</span>,</span>
+<span>             vcov <span class="op">=</span> <span class="st">"hetero"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod5</span> <span class="op">=</span> <span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html">feols</a></span><span class="op">(</span><span class="va">vote_lega_euro</span> <span class="op">~</span> <span class="va">dummy_diesel</span> <span class="op">+</span> <span class="va">dummy_euro_4</span> <span class="op">+</span> <span class="va">dummy_diesel</span><span class="op">*</span><span class="va">dummy_euro_4</span></span>
+<span>             <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">vote_lega_regional</span> <span class="op">|</span> <span class="va">EDU1</span> <span class="op">+</span> <span class="va">EDU2</span> <span class="op">+</span> <span class="va">EDU3</span> <span class="op">+</span> <span class="va">EDU4</span> <span class="op">+</span> <span class="va">profile_gross_personal_eu</span>, </span>
+<span>             data <span class="op">=</span> <span class="va">dts</span><span class="op">[</span><span class="va">target</span><span class="op">!=</span><span class="fl">3</span> <span class="op">&amp;</span> <span class="va">target</span><span class="op">!=</span><span class="fl">4</span> <span class="op">&amp;</span> <span class="va">no_answer_euro</span><span class="op">==</span><span class="fl">0</span> <span class="op">&amp;</span> <span class="va">no_answer_regional</span><span class="op">==</span><span class="fl">0</span>, <span class="op">]</span>,</span>
+<span>             vcov <span class="op">=</span> <span class="st">"hetero"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mod6</span> <span class="op">=</span> <span class="fu"><a href="https://lrberge.github.io/fixest/reference/feols.html">feols</a></span><span class="op">(</span><span class="va">vote_lega_euro</span> <span class="op">~</span> <span class="va">dummy_diesel</span> <span class="op">+</span> <span class="va">dummy_euro_4</span> <span class="op">+</span> <span class="va">dummy_diesel</span><span class="op">*</span><span class="va">dummy_euro_4</span></span>
+<span>             <span class="op">+</span> <span class="va">age</span> <span class="op">+</span> <span class="va">female</span> <span class="op">+</span> <span class="va">vote_lega_municipal</span> <span class="op">|</span> <span class="va">EDU1</span> <span class="op">+</span> <span class="va">EDU2</span> <span class="op">+</span> <span class="va">EDU3</span> <span class="op">+</span> <span class="va">EDU4</span> <span class="op">+</span> <span class="va">profile_gross_personal_eu</span>, </span>
+<span>             data <span class="op">=</span> <span class="va">dts</span><span class="op">[</span><span class="va">target</span><span class="op">!=</span><span class="fl">3</span> <span class="op">&amp;</span> <span class="va">target</span><span class="op">!=</span><span class="fl">4</span> <span class="op">&amp;</span> <span class="va">no_answer_euro</span><span class="op">==</span><span class="fl">0</span> <span class="op">&amp;</span> <span class="va">no_answer_municipal</span><span class="op">==</span><span class="fl">0</span>, <span class="op">]</span>,</span>
+<span>             vcov <span class="op">=</span> <span class="st">"hetero"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Save</span></span>
+<span><span class="fu"><a href="https://lrberge.github.io/fixest/reference/etable.html">etable</a></span><span class="op">(</span><span class="va">mod1</span>,<span class="va">mod2</span>,<span class="va">mod3</span>,<span class="va">mod4</span>,<span class="va">mod5</span>,<span class="va">mod6</span>,</span>
+<span>       keep <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"dummy_diesel"</span>, <span class="st">"dummy_euro_4"</span>, <span class="st">"diesel_euro4"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>  <span class="fu">kable</span><span class="op">(</span>format <span class="op">=</span> <span class="st">"html"</span>, escape <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span></span>
+<span>      <span class="va">kable_styling</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details><div class="cell-output-display">
+
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead><tr>
+<th style="text-align:left;">  </th>
+   <th style="text-align:left;"> mod1 </th>
+   <th style="text-align:left;"> mod2 </th>
+   <th style="text-align:left;"> mod3 </th>
+   <th style="text-align:left;"> mod4 </th>
+   <th style="text-align:left;"> mod5 </th>
+   <th style="text-align:left;"> mod6 </th>
+  </tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;"> Dependent Var.: </td>
+   <td style="text-align:left;"> vote_lega_euro </td>
+   <td style="text-align:left;"> vote_lega_euro </td>
+   <td style="text-align:left;"> vote_lega_euro </td>
+   <td style="text-align:left;"> vote_lega_euro </td>
+   <td style="text-align:left;"> vote_lega_euro </td>
+   <td style="text-align:left;"> vote_lega_euro </td>
+  </tr>
+<tr>
+<td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> dummy_diesel </td>
+   <td style="text-align:left;"> -0.0932 (0.0575) </td>
+   <td style="text-align:left;"> -0.1049. (0.0570) </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> -0.0237 (0.0365) </td>
+   <td style="text-align:left;"> 0.0033 (0.0402) </td>
+   <td style="text-align:left;"> -0.0007 (0.0487) </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> dummy_euro_4 </td>
+   <td style="text-align:left;"> -0.0478 (0.0579) </td>
+   <td style="text-align:left;"> -0.0481 (0.0595) </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> 0.0066 (0.0333) </td>
+   <td style="text-align:left;"> 0.0263 (0.0364) </td>
+   <td style="text-align:left;"> -0.0278 (0.0428) </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> dummy_diesel x dummy_euro_4 </td>
+   <td style="text-align:left;"> 0.1195 (0.0768) </td>
+   <td style="text-align:left;"> 0.1830* (0.0787) </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> 0.1148* (0.0468) </td>
+   <td style="text-align:left;"> 0.0942. (0.0518) </td>
+   <td style="text-align:left;"> 0.1456* (0.0601) </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> dummy_diesel_ass </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> -0.0819 (0.0553) </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> dummy_euro_4_ass </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> -0.0195 (0.0592) </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> diesel_euro4_ass </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;"> 0.1544* (0.0780) </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Fixed-Effects: </td>
+   <td style="text-align:left;"> ---------------- </td>
+   <td style="text-align:left;"> ----------------- </td>
+   <td style="text-align:left;"> ---------------- </td>
+   <td style="text-align:left;"> ---------------- </td>
+   <td style="text-align:left;"> ---------------- </td>
+   <td style="text-align:left;"> ---------------- </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> EDU1 </td>
+   <td style="text-align:left;"> No </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> EDU2 </td>
+   <td style="text-align:left;"> No </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> EDU3 </td>
+   <td style="text-align:left;"> No </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> EDU4 </td>
+   <td style="text-align:left;"> No </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> profile_gross_personal_eu </td>
+   <td style="text-align:left;"> No </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+   <td style="text-align:left;"> Yes </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> ___________________________ </td>
+   <td style="text-align:left;"> ________________ </td>
+   <td style="text-align:left;"> _________________ </td>
+   <td style="text-align:left;"> ________________ </td>
+   <td style="text-align:left;"> ________________ </td>
+   <td style="text-align:left;"> ________________ </td>
+   <td style="text-align:left;"> ________________ </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> S.E. type </td>
+   <td style="text-align:left;"> IID </td>
+   <td style="text-align:left;"> Heteroskeda.-rob. </td>
+   <td style="text-align:left;"> Heterosked.-rob. </td>
+   <td style="text-align:left;"> Heterosked.-rob. </td>
+   <td style="text-align:left;"> Heterosked.-rob. </td>
+   <td style="text-align:left;"> Heterosked.-rob. </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Observations </td>
+   <td style="text-align:left;"> 602 </td>
+   <td style="text-align:left;"> 602 </td>
+   <td style="text-align:left;"> 665 </td>
+   <td style="text-align:left;"> 583 </td>
+   <td style="text-align:left;"> 551 </td>
+   <td style="text-align:left;"> 533 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> R2 </td>
+   <td style="text-align:left;"> 0.00499 </td>
+   <td style="text-align:left;"> 0.13011 </td>
+   <td style="text-align:left;"> 0.15288 </td>
+   <td style="text-align:left;"> 0.60097 </td>
+   <td style="text-align:left;"> 0.57668 </td>
+   <td style="text-align:left;"> 0.49357 </td>
+  </tr>
+<tr>
+<td style="text-align:left;"> Within R2 </td>
+   <td style="text-align:left;"> -- </td>
+   <td style="text-align:left;"> 0.05339 </td>
+   <td style="text-align:left;"> 0.06408 </td>
+   <td style="text-align:left;"> 0.56532 </td>
+   <td style="text-align:left;"> 0.53752 </td>
+   <td style="text-align:left;"> 0.44663 </td>
+  </tr>
+</tbody>
+</table>
+</div>
+</div>
+</section><section id="alternate-controltreatment-splits" class="level2" data-number="3.3"><h2 data-number="3.3" class="anchored" data-anchor-id="alternate-controltreatment-splits">
+<span class="header-section-number">3.3</span> Alternate control/treatment splits</h2>
+<p>I don’t think we did this</p>
+</section><section id="functional" class="level2" data-number="3.4"><h2 data-number="3.4" class="anchored" data-anchor-id="functional">
+<span class="header-section-number">3.4</span> Functional form</h2>
 <p>The main outcome variable is binary 0/1. The authors consider linear models throughout. I (David Reinstein) believe their identification implicitly depends on</p>
 <ul>
 <li>each of the unmeasured underlying characteristics (picked up by the proxy control in ‘difference’) each being associated with the voting outcome linearly on ‘percentage point voting for Lega’ … so the each the</li>
@@ -251,10 +497,11 @@ div.csl-indent {
 <blockquote class="blockquote">
 <p>and then computing <span class="math inline">\(\hat{\theta}_{ATT\%} = \exp(\hat{\beta}_1) - 1 = -0.82\)</span> as shown in column (1) of Table 6.</p>
 </blockquote>
-<p>Estimate this as a logit model? Other specifications like proportional hazards? Roth recommends Quasi-poisson</p>
-<p>https://www.jonathandroth.com/assets/files/LogUniqueHOD0_Draft_Accepted.pdf#page=25.45</p>
-<p>See section 5.2, “A DiD setting: Sequeira (2016)”</p>
-<pre><code></code></pre>
+<p>Estimate this as a logit model? Other specifications like proportional hazards? <a href="https://www.jonathandroth.com/assets/files/LogUniqueHOD0_Draft_Accepted.pdf#page=25.45">Roth recommends Quasi-poisson</a> See section 5.2, “A DiD setting: Sequeira (2016)”</p>
+<p>We re-ran the model as a Poisson model. Results were qualitatively similar at a glance.</p>
+<div class="cell">
+
+</div>
 
 
 <!-- -->
@@ -423,58 +670,117 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Robustness checking and exploration {#robustness}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: input_data</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Input cleaned data"</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Rates of voting for each car group split: implication for identification</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>We present a simple comparison of the Lega voting rates, voting changes, and other outcomes by each car-ownership group. (see below on functional forms)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Alternate control/treatment splits</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Functional form {#functional}</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>The main outcome variable is binary 0/1. The authors consider linear models throughout. I (David Reinstein) believe their identification implicitly depends on</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>each of the unmeasured underlying characteristics (picked up by the proxy control in 'difference') each being associated with the voting outcome linearly on 'percentage point voting for Lega' ... so the each the</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>But the treated and groups might have started from a different baseline level of voting for Lega (check this)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>If the true model is nonlinear (e.g., proportional, or with ceiling effects), the results here may be misleading. E.g., suppose the true effect of the policy on voting was the same for each car-ownership group as a percentage of the initial vote. Inappropriately estimating a linear model would find a substantial 'difference in difference' between these groups, even though the effect did not interact with car ownership itself.</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>@chen_roth cite Wooldridge 2023 </span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; An alternative identifying assumption is to impose that, in the absence of treatment, the percentage changes in the mean would have been the same for the treated and control group. As in Wooldridge (2023), this can be formalized using a “ratio” version of the parallel trends assumption,</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>\frac{E<span class="co">[</span><span class="ot">Y_{it}(0) | D_i = 1, Post_t = 1</span><span class="co">]</span>}{E<span class="co">[</span><span class="ot">Y_{it}(0) | D_i = 1, Post_t = 0</span><span class="co">]</span>} = \frac{E<span class="co">[</span><span class="ot">Y_{it}(0) | D_i = 0, Post_t = 1</span><span class="co">]</span>}{E<span class="co">[</span><span class="ot">Y_{it}(0) | D_i = 0, Post_t = 0</span><span class="co">]</span>}</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="sc">\]</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>We probably don't have time to test for proportional trends (as well as limited data for a powerful test). But it seems an equally-plausible model off-the cuff. Chen and Roth offer an estimation strategy </span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Conveniently, this estimate can also be obtained using Poisson QMLE to estimate  $Y_{it} = \exp(\beta_0 + D_i \times Post_t \beta_1 + D_i\beta_2 + Post_t\beta_3)\epsilon_{it}$ </span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; and then computing $\hat{\theta}_{ATT\%} = \exp(\hat{\beta}_1) - 1 = -0.82$ as shown in column (1) of Table 6.</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>Estimate this as a logit model? Other specifications like proportional hazards? Roth recommends Quasi-poisson</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>https://www.jonathandroth.com/assets/files/LogUniqueHOD0_Draft_Accepted.pdf#page=25.45</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>See section 5.2, "A DiD setting: Sequeira (2016)"</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="in">```{}</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Robustness checking and exploration {#robustness}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: input_data</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Input cleaned data"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pacman)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">p_load</span>(tidyverse, data.table, haven, glue, Hmisc, here, fixest, knitr, kableExtra)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="co"># read in dta file, Clara likes working with data table format</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>survey <span class="ot">=</span> <span class="fu">read_dta</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"OriginalFiles"</span>, <span class="st">"Survey.dta"</span>))</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>dts <span class="ot">=</span> <span class="fu">read_dta</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"OriginalFiles"</span>, <span class="st">"Replication_Dataset.dta"</span>)) <span class="sc">%&gt;%</span> <span class="fu">data.table</span>()</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>We proposed a range of robustness tests. We were able to do a subset of these.</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="fu">## Rates of voting for each car group split: implication for identification</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>We <span class="co">[</span><span class="ot">aimed to</span><span class="co">]</span> present a simple comparison of the Lega voting rates, voting changes, and other outcomes by each car-ownership group. (see below on functional forms)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Main results (table 2, recoded)</span></span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: recode_table_2</span></span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "Table 2 recoded"</span></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Table 2 ------</span></span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep the same choices made by the authors</span></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fixest)</span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">=</span> <span class="fu">feols</span>(vote_lega_euro <span class="sc">~</span> dummy_diesel <span class="sc">+</span> dummy_euro_4 <span class="sc">+</span> dummy_diesel<span class="sc">*</span>dummy_euro_4, </span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> dts[target<span class="sc">!=</span><span class="dv">3</span> <span class="sc">&amp;</span> target<span class="sc">!=</span><span class="dv">4</span> <span class="sc">&amp;</span> no_answer_euro<span class="sc">==</span><span class="dv">0</span>, ])</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">=</span> <span class="fu">feols</span>(vote_lega_euro <span class="sc">~</span> dummy_diesel <span class="sc">+</span> dummy_euro_4 <span class="sc">+</span> dummy_diesel<span class="sc">*</span>dummy_euro_4</span>
+<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>             <span class="sc">+</span> age <span class="sc">+</span> <span class="fu">as.factor</span>(female) <span class="sc">|</span> EDU1 <span class="sc">+</span> EDU2 <span class="sc">+</span> EDU3 <span class="sc">+</span> EDU4 <span class="sc">+</span> profile_gross_personal_eu, </span>
+<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> dts[target<span class="sc">!=</span><span class="dv">3</span> <span class="sc">&amp;</span> target<span class="sc">!=</span><span class="dv">4</span> <span class="sc">&amp;</span> no_answer_euro<span class="sc">==</span><span class="dv">0</span>, ],</span>
+<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a>             <span class="at">vcov =</span> <span class="st">"hetero"</span>)</span>
+<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>mod3 <span class="ot">=</span> <span class="fu">feols</span>(vote_lega_euro <span class="sc">~</span> dummy_diesel_ass <span class="sc">+</span> dummy_euro_4_ass <span class="sc">+</span> diesel_euro4_ass</span>
+<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a>             <span class="sc">+</span> age <span class="sc">+</span> female <span class="sc">+</span> dummy_car_unknown <span class="sc">|</span> EDU1 <span class="sc">+</span> EDU2 <span class="sc">+</span> EDU3 <span class="sc">+</span> EDU4 <span class="sc">+</span> profile_gross_personal_eu, </span>
+<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> dts[target<span class="sc">!=</span><span class="dv">3</span> <span class="sc">&amp;</span> no_answer_euro<span class="sc">==</span><span class="dv">0</span>, ],</span>
+<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>             <span class="at">vcov =</span> <span class="st">"hetero"</span>)</span>
+<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-57"><a href="#cb5-57" aria-hidden="true" tabindex="-1"></a>mod4 <span class="ot">=</span> <span class="fu">feols</span>(vote_lega_euro <span class="sc">~</span> dummy_diesel <span class="sc">+</span> dummy_euro_4 <span class="sc">+</span> dummy_diesel<span class="sc">*</span>dummy_euro_4</span>
+<span id="cb5-58"><a href="#cb5-58" aria-hidden="true" tabindex="-1"></a>             <span class="sc">+</span> age <span class="sc">+</span> female <span class="sc">+</span> vote_lega_2018 <span class="sc">|</span> EDU1 <span class="sc">+</span> EDU2 <span class="sc">+</span> EDU3 <span class="sc">+</span> EDU4 <span class="sc">+</span> profile_gross_personal_eu, </span>
+<span id="cb5-59"><a href="#cb5-59" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> dts[target<span class="sc">!=</span><span class="dv">3</span> <span class="sc">&amp;</span> target<span class="sc">!=</span><span class="dv">4</span> <span class="sc">&amp;</span> no_answer_euro<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;</span> no_answer_2018<span class="sc">==</span><span class="dv">0</span>, ],</span>
+<span id="cb5-60"><a href="#cb5-60" aria-hidden="true" tabindex="-1"></a>             <span class="at">vcov =</span> <span class="st">"hetero"</span>)</span>
+<span id="cb5-61"><a href="#cb5-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-62"><a href="#cb5-62" aria-hidden="true" tabindex="-1"></a>mod5 <span class="ot">=</span> <span class="fu">feols</span>(vote_lega_euro <span class="sc">~</span> dummy_diesel <span class="sc">+</span> dummy_euro_4 <span class="sc">+</span> dummy_diesel<span class="sc">*</span>dummy_euro_4</span>
+<span id="cb5-63"><a href="#cb5-63" aria-hidden="true" tabindex="-1"></a>             <span class="sc">+</span> age <span class="sc">+</span> female <span class="sc">+</span> vote_lega_regional <span class="sc">|</span> EDU1 <span class="sc">+</span> EDU2 <span class="sc">+</span> EDU3 <span class="sc">+</span> EDU4 <span class="sc">+</span> profile_gross_personal_eu, </span>
+<span id="cb5-64"><a href="#cb5-64" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> dts[target<span class="sc">!=</span><span class="dv">3</span> <span class="sc">&amp;</span> target<span class="sc">!=</span><span class="dv">4</span> <span class="sc">&amp;</span> no_answer_euro<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;</span> no_answer_regional<span class="sc">==</span><span class="dv">0</span>, ],</span>
+<span id="cb5-65"><a href="#cb5-65" aria-hidden="true" tabindex="-1"></a>             <span class="at">vcov =</span> <span class="st">"hetero"</span>)</span>
+<span id="cb5-66"><a href="#cb5-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-67"><a href="#cb5-67" aria-hidden="true" tabindex="-1"></a>mod6 <span class="ot">=</span> <span class="fu">feols</span>(vote_lega_euro <span class="sc">~</span> dummy_diesel <span class="sc">+</span> dummy_euro_4 <span class="sc">+</span> dummy_diesel<span class="sc">*</span>dummy_euro_4</span>
+<span id="cb5-68"><a href="#cb5-68" aria-hidden="true" tabindex="-1"></a>             <span class="sc">+</span> age <span class="sc">+</span> female <span class="sc">+</span> vote_lega_municipal <span class="sc">|</span> EDU1 <span class="sc">+</span> EDU2 <span class="sc">+</span> EDU3 <span class="sc">+</span> EDU4 <span class="sc">+</span> profile_gross_personal_eu, </span>
+<span id="cb5-69"><a href="#cb5-69" aria-hidden="true" tabindex="-1"></a>             <span class="at">data =</span> dts[target<span class="sc">!=</span><span class="dv">3</span> <span class="sc">&amp;</span> target<span class="sc">!=</span><span class="dv">4</span> <span class="sc">&amp;</span> no_answer_euro<span class="sc">==</span><span class="dv">0</span> <span class="sc">&amp;</span> no_answer_municipal<span class="sc">==</span><span class="dv">0</span>, ],</span>
+<span id="cb5-70"><a href="#cb5-70" aria-hidden="true" tabindex="-1"></a>             <span class="at">vcov =</span> <span class="st">"hetero"</span>)</span>
+<span id="cb5-71"><a href="#cb5-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-72"><a href="#cb5-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Save</span></span>
+<span id="cb5-73"><a href="#cb5-73" aria-hidden="true" tabindex="-1"></a><span class="fu">etable</span>(mod1,mod2,mod3,mod4,mod5,mod6,</span>
+<span id="cb5-74"><a href="#cb5-74" aria-hidden="true" tabindex="-1"></a>       <span class="at">keep =</span> <span class="fu">c</span>(<span class="st">"dummy_diesel"</span>, <span class="st">"dummy_euro_4"</span>, <span class="st">"diesel_euro4"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-75"><a href="#cb5-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">format =</span> <span class="st">"html"</span>, <span class="at">escape =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-76"><a href="#cb5-76" aria-hidden="true" tabindex="-1"></a>      kable_styling</span>
+<span id="cb5-77"><a href="#cb5-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-78"><a href="#cb5-78" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb5-79"><a href="#cb5-79" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-80"><a href="#cb5-80" aria-hidden="true" tabindex="-1"></a><span class="fu">## Alternate control/treatment splits</span></span>
+<span id="cb5-81"><a href="#cb5-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-82"><a href="#cb5-82" aria-hidden="true" tabindex="-1"></a>I don't think we did this</span>
+<span id="cb5-83"><a href="#cb5-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-84"><a href="#cb5-84" aria-hidden="true" tabindex="-1"></a><span class="fu">## Functional form {#functional}</span></span>
+<span id="cb5-85"><a href="#cb5-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-86"><a href="#cb5-86" aria-hidden="true" tabindex="-1"></a>The main outcome variable is binary 0/1. The authors consider linear models throughout. I (David Reinstein) believe their identification implicitly depends on</span>
+<span id="cb5-87"><a href="#cb5-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-88"><a href="#cb5-88" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>each of the unmeasured underlying characteristics (picked up by the proxy control in 'difference') each being associated with the voting outcome linearly on 'percentage point voting for Lega' ... so the each the</span>
+<span id="cb5-89"><a href="#cb5-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-90"><a href="#cb5-90" aria-hidden="true" tabindex="-1"></a>But the treated and groups might have started from a different baseline level of voting for Lega (check this)</span>
+<span id="cb5-91"><a href="#cb5-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-92"><a href="#cb5-92" aria-hidden="true" tabindex="-1"></a>If the true model is nonlinear (e.g., proportional, or with ceiling effects), the results here may be misleading. E.g., suppose the true effect of the policy on voting was the same for each car-ownership group as a percentage of the initial vote. Inappropriately estimating a linear model would find a substantial 'difference in difference' between these groups, even though the effect did not interact with car ownership itself.</span>
+<span id="cb5-93"><a href="#cb5-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-94"><a href="#cb5-94" aria-hidden="true" tabindex="-1"></a>@chen_roth cite Wooldridge 2023 </span>
+<span id="cb5-95"><a href="#cb5-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-96"><a href="#cb5-96" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; An alternative identifying assumption is to impose that, in the absence of treatment, the percentage changes in the mean would have been the same for the treated and control group. As in Wooldridge (2023), this can be formalized using a “ratio” version of the parallel trends assumption,</span></span>
+<span id="cb5-97"><a href="#cb5-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-98"><a href="#cb5-98" aria-hidden="true" tabindex="-1"></a><span class="sc">\[</span></span>
+<span id="cb5-99"><a href="#cb5-99" aria-hidden="true" tabindex="-1"></a>\frac{E<span class="co">[</span><span class="ot">Y_{it}(0) | D_i = 1, Post_t = 1</span><span class="co">]</span>}{E<span class="co">[</span><span class="ot">Y_{it}(0) | D_i = 1, Post_t = 0</span><span class="co">]</span>} = \frac{E<span class="co">[</span><span class="ot">Y_{it}(0) | D_i = 0, Post_t = 1</span><span class="co">]</span>}{E<span class="co">[</span><span class="ot">Y_{it}(0) | D_i = 0, Post_t = 0</span><span class="co">]</span>}</span>
+<span id="cb5-100"><a href="#cb5-100" aria-hidden="true" tabindex="-1"></a><span class="sc">\]</span></span>
+<span id="cb5-101"><a href="#cb5-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-102"><a href="#cb5-102" aria-hidden="true" tabindex="-1"></a>We probably don't have time to test for proportional trends (as well as limited data for a powerful test). But it seems an equally-plausible model off-the cuff. Chen and Roth offer an estimation strategy </span>
+<span id="cb5-103"><a href="#cb5-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-104"><a href="#cb5-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-105"><a href="#cb5-105" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; Conveniently, this estimate can also be obtained using Poisson QMLE to estimate  $Y_{it} = \exp(\beta_0 + D_i \times Post_t \beta_1 + D_i\beta_2 + Post_t\beta_3)\epsilon_{it}$ </span></span>
+<span id="cb5-106"><a href="#cb5-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-107"><a href="#cb5-107" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; and then computing $\hat{\theta}_{ATT\%} = \exp(\hat{\beta}_1) - 1 = -0.82$ as shown in column (1) of Table 6.</span></span>
+<span id="cb5-108"><a href="#cb5-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-109"><a href="#cb5-109" aria-hidden="true" tabindex="-1"></a>Estimate this as a logit model? Other specifications like proportional hazards? <span class="co">[</span><span class="ot">Roth recommends Quasi-poisson</span><span class="co">](https://www.jonathandroth.com/assets/files/LogUniqueHOD0_Draft_Accepted.pdf#page=25.45)</span> See section 5.2, "A DiD setting: Sequeira (2016)"</span>
+<span id="cb5-110"><a href="#cb5-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-111"><a href="#cb5-111" aria-hidden="true" tabindex="-1"></a>We re-ran the model as a Poisson model. Results were qualitatively similar at a glance. </span>
+<span id="cb5-112"><a href="#cb5-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-113"><a href="#cb5-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-116"><a href="#cb5-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb5-117"><a href="#cb5-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

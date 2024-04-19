@@ -45,8 +45,6 @@ library(glue)
 # import data
 Replication_data = read_dta(here::here("OriginalFiles", "Replication_Dataset.dta"))
 
-
-# CR: plotpath missing
 plotpath = here::here("replicated_output")
 
 

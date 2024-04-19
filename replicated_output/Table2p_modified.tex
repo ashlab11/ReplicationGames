@@ -1,0 +1,40 @@
+
+\begingroup
+\centering
+\begin{tabular}{lcccccc}
+   \tabularnewline \midrule \midrule
+   Dependent Variable: & \multicolumn{6}{c}{vote\_lega\_euro}\\
+   Model:                                    & (1)      & (2)           & (3)          & (4)      & (5)      & (6)\\  
+   \midrule
+   \emph{Variables}\\
+   dummy\_diesel                             & -0.4106  & -0.4614$^{*}$ &              & -0.0077  & 0.1093   & 0.1280\\   
+                                             & (0.2894) & (0.2711)      &              & (0.1972) & (0.2183) & (0.3072)\\   
+   dummy\_euro\_4                            & -0.1893  & -0.2236       &              & 0.0256   & 0.1764   & 0.0019\\   
+                                             & (0.2713) & (0.2483)      &              & (0.1907) & (0.1827) & (0.1992)\\   
+   dummy\_diesel $\times$ dummy\_euro\_4     & 0.5189   & 0.7118$^{**}$ &              & 0.3434   & 0.2451   & 0.5222\\   
+                                             & (0.3789) & (0.3481)      &              & (0.2592) & (0.2627) & (0.3221)\\   
+   dummy\_diesel\_ass                        &          &               & -0.3832      &          &          &   \\   
+                                             &          &               & (0.2563)     &          &          &   \\   
+   dummy\_euro\_4\_ass                       &          &               & -0.1542      &          &          &   \\   
+                                             &          &               & (0.2531)     &          &          &   \\   
+   diesel\_euro4\_ass                        &          &               & 0.6099$^{*}$ &          &          &   \\   
+                                             &          &               & (0.3442)     &          &          &   \\   
+   \midrule
+   \emph{Fixed-effects}\\
+   EDU1                                      &          & Yes           & Yes          & Yes      & Yes      & Yes\\  
+   EDU2                                      &          & Yes           & Yes          & Yes      & Yes      & Yes\\  
+   EDU3                                      &          & Yes           & Yes          & Yes      & Yes      & Yes\\  
+   EDU4                                      &          & Yes           & Yes          & Yes      & Yes      & Yes\\  
+   profile\_gross\_personal\_eu              &          & Yes           & Yes          & Yes      & Yes      & Yes\\  
+   \midrule
+   \emph{Fit statistics}\\
+   Observations                              & 602      & 602           & 665          & 583      & 551      & 533\\  
+   Squared Correlation                       & 0.00499  & 0.14100       & 0.16530      & 0.45263  & 0.38159  & 0.43376\\  
+   Pseudo R$^2$                              & 0.00337  & 0.08354       & 0.09005      & 0.29877  & 0.30633  & 0.26270\\  
+   BIC                                       & 731.70   & 809.31        & 924.67       & 640.01   & 614.81   & 623.33\\  
+   \midrule \midrule
+   \multicolumn{7}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+\end{tabular}
+\par\endgroup
+
+

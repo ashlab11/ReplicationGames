@@ -149,7 +149,6 @@ print(xtable(table_1),
       file = here("replicated_output", "Table1.tex"))
 
 
-
 # Table 2 ------
 
 # Keep the same choices made by the authors

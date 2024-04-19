@@ -4,16 +4,78 @@
 #| label: input_data
 #| code-summary: "Input cleaned data"
 
-```
- 
+library(pacman)
+p_load(tidyverse, data.table, haven, glue, Hmisc, here, fixest, knitr, kableExtra)
 
+rm(list=ls())
+gc()
+
+
+# read in dta file, Clara likes working with data table format
+survey = read_dta(here::here("OriginalFiles", "Survey.dta"))
+dts = read_dta(here::here("OriginalFiles", "Replication_Dataset.dta")) %>% data.table()
+
+```
+
+
+
+We proposed a range of robustness tests. We were able to do a subset of these.
 
 ## Rates of voting for each car group split: implication for identification
 
-We present a simple comparison of the Lega voting rates, voting changes, and other outcomes by each car-ownership group. (see below on functional forms)
+We [aimed to] present a simple comparison of the Lega voting rates, voting changes, and other outcomes by each car-ownership group. (see below on functional forms)
 
+## Main results (table 2, recoded)
+
+```{r}
+#| label: recode_table_2
+#| code-summary: "Table 2 recoded"
+ 
+
+# Table 2 ------
+
+# Keep the same choices made by the authors
+library(fixest)
+
+mod1 = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0, ])
+
+mod2 = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + as.factor(female) | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0, ],
+             vcov = "hetero")
+
+mod3 = feols(vote_lega_euro ~ dummy_diesel_ass + dummy_euro_4_ass + diesel_euro4_ass
+             + age + female + dummy_car_unknown | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & no_answer_euro==0, ],
+             vcov = "hetero")
+
+mod4 = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_lega_2018 | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_2018==0, ],
+             vcov = "hetero")
+
+mod5 = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_lega_regional | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_regional==0, ],
+             vcov = "hetero")
+
+mod6 = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_lega_municipal | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_municipal==0, ],
+             vcov = "hetero")
+
+# Save
+etable(mod1,mod2,mod3,mod4,mod5,mod6,
+       keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4")) %>%
+  kable(format = "html", escape = FALSE) %>%
+      kable_styling
+
+```
 
 ## Alternate control/treatment splits
+
+I don't think we did this
 
 ## Functional form {#functional}
 
@@ -40,13 +102,12 @@ We probably don't have time to test for proportional trends (as well as limited 
 
 > and then computing $\hat{\theta}_{ATT\%} = \exp(\hat{\beta}_1) - 1 = -0.82$ as shown in column (1) of Table 6.
 
+Estimate this as a logit model? Other specifications like proportional hazards? [Roth recommends Quasi-poisson](https://www.jonathandroth.com/assets/files/LogUniqueHOD0_Draft_Accepted.pdf#page=25.45) See section 5.2, "A DiD setting: Sequeira (2016)"
+
+We re-ran the model as a Poisson model. Results were qualitatively similar at a glance. 
 
 
-Estimate this as a logit model? Other specifications like proportional hazards? Roth recommends Quasi-poisson
+```{r}
 
-https://www.jonathandroth.com/assets/files/LogUniqueHOD0_Draft_Accepted.pdf#page=25.45
-
-See section 5.2, "A DiD setting: Sequeira (2016)"
-
-```{}
 ```
+
