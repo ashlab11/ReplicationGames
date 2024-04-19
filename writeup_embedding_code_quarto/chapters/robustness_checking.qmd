@@ -67,7 +67,8 @@ mod6 = feols(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_e
 
 # Save
 etable(mod1,mod2,mod3,mod4,mod5,mod6,
-       keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4")) %>%
+       keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
+  digits=3) %>%
   kable(format = "html", escape = FALSE) %>%
       kable_styling
 
@@ -108,6 +109,48 @@ We re-ran the model as a Poisson model. Results were qualitatively similar at a 
 
 
 ```{r}
+# Table 2 with Poisson ------
+
+mod1p = fepois(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0, ])
+summary(mod1p)
+
+mod2p = fepois(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + as.factor(female) | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0, ],
+             vcov = "hetero")
+summary(mod2p)
+
+mod3p = fepois(vote_lega_euro ~ dummy_diesel_ass + dummy_euro_4_ass + diesel_euro4_ass
+             + age + female + dummy_car_unknown | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & no_answer_euro==0, ],
+             vcov = "hetero")
+summary(mod3p)
+
+mod4p = fepois(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_lega_2018 | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_2018==0, ],
+             vcov = "hetero")
+summary(mod4p)
+
+mod5p = fepois(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_lega_regional | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_regional==0, ],
+             vcov = "hetero")
+summary(mod5p)
+
+mod6p = fepois(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
+             + age + female + vote_lega_municipal | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
+             data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_municipal==0, ],
+             vcov = "hetero")
+summary(mod6[])
+
+# Save
+etable(mod1p,mod2p,mod3p,mod4p,mod5p,mod6p,
+       keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"), 
+  digits=3) %>%
+  kable(caption = "poisson, raw coefs", format = "html", escape = FALSE, digits=3) %>%
+      kable_styling
 
 ```
 
