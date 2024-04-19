@@ -16,11 +16,15 @@ source(here::here("rebuilding_data", "rebuilding_data/BrownReplicationCleaning.R
 # Run "OriginalFiles/Replication_Code_Stata.do". 
 #Output is put into the file `stata_replication_log...`
 
-# Run authors' R code for main resulsts, with minor modifications for paths and packages:
+# Run authors' R code for main results, with minor modifications for paths and packages:
 
 source(here::here("replication_code_and_logs", "Replication_Code_R_minor_fixes.R"))
 
+# New constructed variables for robustness checking
+source(here::here("rebuilding_data", "prepare_new_variables.R"))
+
 # Recoded R code with some adjustment
+source(here::here("replication_code_and_logs", "Reproduce_Code_R.R"))
 
 # render the book ####
 #system("quarto render")

@@ -3,6 +3,13 @@
 # +++++++++++++++++++++++++++++++++++++++++++++++
 # FCC20240419
 
+
+# ADD DEPENDENCIES -- TODO 
+install.packages("pacman")     ##gglabeller not available for this version of R  
+library(pacman)
+
+p_load(mice, data.table, tidyverse, haven, fixest, Hmisc, here)
+
 # load libraries
 library(data.table)
 library(tidyverse)
