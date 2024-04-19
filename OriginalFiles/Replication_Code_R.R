@@ -29,8 +29,7 @@ lapply(Packages, library, character.only = TRUE)     #to loud more than one pack
 # Set Working Directory and Import the dataset #
 ################################################
 
-tabpath <- "insert here"
-Replication_data <- read_dta("insert here - Replication_Dataset.dta")
+Replication_data <- read_dta("Replication_Dataset.dta")
 
 
 ###########
