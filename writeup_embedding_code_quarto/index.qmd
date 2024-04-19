@@ -1,8 +1,9 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+We are 'robustness replicating' @colantone2024political (also noting @colantone2024political_cor) for a replication game (see [Institute for replication](i4rep.org)
+
+
 
 ```{r}
 options(knitr.duplicate.label = "allow")

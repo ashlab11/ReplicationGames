@@ -10,5 +10,14 @@
   },
   "references.qmd": {
     "references.html": "ce697285"
+  },
+  "chapters/computational_replication_checking.qmd": {
+    "computational_replication_checking.html": "12d73a87"
+  },
+  "chapters/robustness_checking.qmd": {
+    "robustness_checking.html": "8be5d6f8"
+  },
+  "chapters/writeup.qmd": {
+    "writeup.html": "c8bf1a1a"
   }
 }

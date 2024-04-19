@@ -1,0 +1,6 @@
+# Reconstructing data from survey {#recode}
+
+The `BrownReplicationCleaning.R` [here](https://github.com/ashlab11/ReplicationGames/blob/main/rebuilding_data/BrownReplicationCleaning.R) reconstructs the replication data from the survey data, and checks it against the provided data.
+
+The last line of this script compares the two data sets: they are identical, except for a different approach to coding factors.
+

@@ -1,16 +1,18 @@
 project:
   type: book
-  output-dir: docs
+  output-dir: ../docs
 
 book:
-  title: "Replication game: Colantone et al"
-  author: "David Reinstein"
-  repo-url: https://github.com/daaronr/dr_quarto_template/
+  title: "Replication game notebook: Colantone et al"
+  author: "David Reinstein, Others on team"
+  #repo-url: 
   repo-actions: [edit, issue]
   chapters:
     - index.qmd
     - chapters/intro.qmd
-    - chapters/summary.qmd
+    - chapters/computational_replication_checking.qmd
+    - chapters/robustness_checking.qmd
+    - chapters/writeup.qmd
     - references.qmd
   reader-mode: true
   page-navigation: true

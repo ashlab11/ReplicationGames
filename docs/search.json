@@ -1,0 +1,170 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Replication game notebook: Colantone et al",
+    "section": "",
+    "text": "We are ‘robustness replicating’ Colantone et al. (2024a) (also noting Colantone et al. (2024b)) for a replication game (see Institute for replication\n\nCodeoptions(knitr.duplicate.label = \"allow\")\n\n\n\n\n\n\n\n\nColantone, Italo, Livio Di Lonardo, Yotam Margalit, and Marco Percoco. 2024a. “The Political Consequences of Green Policies: Evidence from Italy—CORRIGENDUM.” American Political Science Review 118 (1): 545–48.\n\n\n———. 2024b. “The Political Consequences of Green Policies: Evidence from Italy—CORRIGENDUM.” American Political Science Review 118 (1): 545–48."
+  },
+  {
+    "objectID": "chapters/intro.html",
+    "href": "chapters/intro.html",
+    "title": "\n1  Overview and approach\n",
+    "section": "",
+    "text": "“The Political Consequences of Green Policies”\nAuthors: …\nNote: the ‘writeup’ will be given in the chapter “A comment on Colantone et al. (2024, APSR)"
+  },
+  {
+    "objectID": "chapters/intro.html#background-and-goals",
+    "href": "chapters/intro.html#background-and-goals",
+    "title": "\n1  Overview and approach\n",
+    "section": "\n1.2 Background and goals",
+    "text": "1.2 Background and goals\nWe are ‘robustness replicating’ Colantone et al. (2024a) (also noting Colantone et al. (2024b)) for a replication game (see Institute for replication\nMain goals\n\nComputationally reproduce key results (do they computationally hold up, especially the ‘main claims’). See ‘Computational replication’.\nRobustness checks: Consider alternate plausible specifications and approaches; do the results persist? See ‘Robustness checks’\nMethodological (if time permits): critique methodology, provide further analysis (e.g., multiple hypothesis testing corrections, equivalence tests)"
+  },
+  {
+    "objectID": "chapters/intro.html#the-papers-main-claim-evidence",
+    "href": "chapters/intro.html#the-papers-main-claim-evidence",
+    "title": "\n1  Overview and approach\n",
+    "section": "\n1.3 The paper’s main claim, evidence",
+    "text": "1.3 The paper’s main claim, evidence\n\n1.3.1 Main claim:\n\n ~'This policy caused people [who were financially hurt] to vote for Lega'. [or more generally to be more right wing]\nBackground: \"The policy identifies the most polluting categories of vehicles and bans them from accessing and circulating within the area.\" \n\n1.3.2 Main evidence for this claim:\n\n\nthe difference in the differences of outcomes by emission category, that is, between Diesel versus Petrol owners of Euro4, and Diesel versus Petrol owners of Euro5.\"\n\n(Note it’s a difference in differences without a time dimension, although they later consider vote switches) \n\nOur main dependent variable is an indicator that takes the value 1 if the respondent reports voting for Lega, and 0 otherwise.\n\n\nthe average estimated effect is 13.5 percentage points … the baseline rate of support for Lega in the sample was 24.4%. … owning a car affected by the vehicle ban raised the probability of voting for Lega in the subsequent elections by 55% above the baseline rate\"\n\n\n1.3.3 Secondary claim(s)/other key claims:\n\n\nelectoral change did not stem from a broader shift against environmentalism, but rather from disaffection with the policy's uneven pocketbook implications\n\nThey also, ~‘people who were compensated did not shift in response to the policy’\nThese are implicitly claims of (1) null or bounded effects and (2) differential effects (for those compensated vs. those not compensated.) This is important to the authors’ theoretical interpretation of the effect, and its generalization to political behavior as a whole."
+  },
+  {
+    "objectID": "chapters/intro.html#ignore-content-below",
+    "href": "chapters/intro.html#ignore-content-below",
+    "title": "\n1  Overview and approach\n",
+    "section": "\n1.4 IGNORE CONTENT BELOW",
+    "text": "1.4 IGNORE CONTENT BELOW\n\n\n\n\n\n\nExpand To Learn About Collapse\n\n\n\n\n\nThis is an example of a ‘folded’ caution callout that can be expanded by the user. You can use collapse=\"true\" to collapse it by default or collapse=\"false\" to make a collapsible callout that is expanded by default."
+  },
+  {
+    "objectID": "chapters/intro.html#create-an-object-to-see-if-it-crosses-chapters",
+    "href": "chapters/intro.html#create-an-object-to-see-if-it-crosses-chapters",
+    "title": "\n1  Overview and approach\n",
+    "section": "\n1.5 Create an object to see if it crosses chapters",
+    "text": "1.5 Create an object to see if it crosses chapters\n\nCodextest <- 24"
+  },
+  {
+    "objectID": "chapters/intro.html#example-of-inline-code",
+    "href": "chapters/intro.html#example-of-inline-code",
+    "title": "\n1  Overview and approach\n",
+    "section": "\n1.6 Example of inline code",
+    "text": "1.6 Example of inline code\nBefore we defined the object xtest (see previous code block). You can also use integrate short code blocks into the narrative using “inline code” … Type 24 and the value of the object xtest shows up in your code, here 24."
+  },
+  {
+    "objectID": "chapters/intro.html#showing-some-material",
+    "href": "chapters/intro.html#showing-some-material",
+    "title": "\n1  Overview and approach\n",
+    "section": "\n1.7 Showing some material",
+    "text": "1.7 Showing some material\nWhat if I want the code to be folded but not to spit results and side effects onto the screen?\n\nCode3+5\n\na <- \"happiness\"\n\n\nhappiness\nDid it display the sum? Was the object defined?"
+  },
+  {
+    "objectID": "chapters/intro.html#labelingcaptioning-chunks",
+    "href": "chapters/intro.html#labelingcaptioning-chunks",
+    "title": "\n1  Overview and approach\n",
+    "section": "\n1.8 Labeling/captioning chunks",
+    "text": "1.8 Labeling/captioning chunks\nWait, why do we just have ‘code’ labeling the chunks when you fold them. It would be much more useful to have a descriptive label you can see in the html. We can do this in each chunk with #| code-summary: \"blah blah\", as below\nNote: the chunk options content itself is not shown. Below, we have:\n#| label: car-talk\n#| code-summary: \"Car talk stuff\"\n\nhead(mtcars)\n\nCar talk stuffhead(mtcars)\n\n                   mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\nHornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1\nHornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2\nValiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1\n\n\n\n\n\n\n\n\nColantone, Italo, Livio Di Lonardo, Yotam Margalit, and Marco Percoco. 2024a. “The Political Consequences of Green Policies: Evidence from Italy—CORRIGENDUM.” American Political Science Review 118 (1): 545–48.\n\n\n———. 2024b. “The Political Consequences of Green Policies: Evidence from Italy—CORRIGENDUM.” American Political Science Review 118 (1): 545–48."
+  },
+  {
+    "objectID": "chapters/computational_replication_checking.html",
+    "href": "chapters/computational_replication_checking.html",
+    "title": "2  Computational replication",
+    "section": "",
+    "text": "Do the authors’ results replicate?"
+  },
+  {
+    "objectID": "chapters/computational_replication_checking.html#data-sourcing-and-code-structure",
+    "href": "chapters/computational_replication_checking.html#data-sourcing-and-code-structure",
+    "title": "2  Computational replication",
+    "section": "2.1 Data sourcing and code structure",
+    "text": "2.1 Data sourcing and code structure"
+  },
+  {
+    "objectID": "chapters/computational_replication_checking.html#cleaning-and-reconstruction",
+    "href": "chapters/computational_replication_checking.html#cleaning-and-reconstruction",
+    "title": "2  Computational replication",
+    "section": "2.2 Cleaning and reconstruction",
+    "text": "2.2 Cleaning and reconstruction\nWe recode the construction of the data used in the analysis in chapter \\(\\ref{recode}\\)."
+  },
+  {
+    "objectID": "chapters/computational_replication_checking.html#stata-part-of-code",
+    "href": "chapters/computational_replication_checking.html#stata-part-of-code",
+    "title": "2  Computational replication",
+    "section": "2.3 ‘Stata’ part of code",
+    "text": "2.3 ‘Stata’ part of code\n\nRe-run Stata analysis code and see if it generates the numbers reported in the text [DONE] (looks good)\n\nSource and documentation:\nFlorian re-ran the do files as found in ‘original files’\n\n“From_Survey_To_Replication_Dataset.do”: contains the Stata commands that allow to create Replication_Dataset.dta, starting from Survey.dta.\n\n\n“Replication_Code_Stata.do”: contains the Stata commands that allow to replicate all the results presented in the paper. It is organized by tables.\n\n(?All results or just regressions?)\nThe .do file doesn’t create tables, it just generates a log file\nTables 2-5. Florian scanned it, saw the results looked similar; same coefficients and standard errors. [Note: this could also be checked in chatgpt.]\nSee the log file: stata_replication_log_20240419.log"
+  },
+  {
+    "objectID": "chapters/computational_replication_checking.html#r-part-of-the-code",
+    "href": "chapters/computational_replication_checking.html#r-part-of-the-code",
+    "title": "2  Computational replication",
+    "section": "2.4 R part of the code",
+    "text": "2.4 R part of the code"
+  },
+  {
+    "objectID": "chapters/robustness_checking.html#rates-of-voting-for-each-car-group-split-implication-for-identification",
+    "href": "chapters/robustness_checking.html#rates-of-voting-for-each-car-group-split-implication-for-identification",
+    "title": "3  Robustness checking and exploration",
+    "section": "\n3.1 Rates of voting for each car group split: implication for identification",
+    "text": "3.1 Rates of voting for each car group split: implication for identification\nWe present a simple comparison of the Lega voting rates, voting changes, and other outcomes by each car-ownership group. (see below on functional forms)"
+  },
+  {
+    "objectID": "chapters/robustness_checking.html#alternate-controltreatment-splits",
+    "href": "chapters/robustness_checking.html#alternate-controltreatment-splits",
+    "title": "3  Robustness checking and exploration",
+    "section": "\n3.2 Alternate control/treatment splits",
+    "text": "3.2 Alternate control/treatment splits"
+  },
+  {
+    "objectID": "chapters/robustness_checking.html#functional",
+    "href": "chapters/robustness_checking.html#functional",
+    "title": "3  Robustness checking and exploration",
+    "section": "\n3.3 Functional form",
+    "text": "3.3 Functional form\nThe main outcome variable is binary 0/1. The authors consider linear models throughout. I (David Reinstein) believe their identification implicitly depends on\n\neach of the unmeasured underlying characteristics (picked up by the proxy control in ‘difference’) each being associated with the voting outcome linearly on ‘percentage point voting for Lega’ … so the each the\n\nBut the treated and groups might have started from a different baseline level of voting for Lega (check this)\nIf the true model is nonlinear (e.g., proportional, or with ceiling effects), the results here may be misleading. E.g., suppose the true effect of the policy on voting was the same for each car-ownership group as a percentage of the initial vote. Inappropriately estimating a linear model would find a substantial ‘difference in difference’ between these groups, even though the effect did not interact with car ownership itself.\nChen and Roth (2023) cite Wooldridge 2023\n\nAn alternative identifying assumption is to impose that, in the absence of treatment, the percentage changes in the mean would have been the same for the treated and control group. As in Wooldridge (2023), this can be formalized using a “ratio” version of the parallel trends assumption,\n\n[ = ]\nWe probably don’t have time to test for proportional trends (as well as limited data for a powerful test). But it seems an equally-plausible model off-the cuff. Chen and Roth offer an estimation strategy\n\nConveniently, this estimate can also be obtained using Poisson QMLE to estimate \\(Y_{it} = \\exp(\\beta_0 + D_i \\times Post_t \\beta_1 + D_i\\beta_2 + Post_t\\beta_3)\\epsilon_{it}\\)\n\n\nand then computing \\(\\hat{\\theta}_{ATT\\%} = \\exp(\\hat{\\beta}_1) - 1 = -0.82\\) as shown in column (1) of Table 6.\n\nEstimate this as a logit model? Other specifications like proportional hazards? Roth recommends Quasi-poisson\nhttps://www.jonathandroth.com/assets/files/LogUniqueHOD0_Draft_Accepted.pdf#page=25.45\nSee section 5.2, “A DiD setting: Sequeira (2016)”\n\n\n\n\n\n\n\nChen, Jiafeng, and Jonathan Roth. 2023. “Logs with Zeros? Some Problems and Solutions*.” The Quarterly Journal of Economics 139 (2): 891–936. https://doi.org/10.1093/qje/qjad054."
+  },
+  {
+    "objectID": "chapters/writeup.html",
+    "href": "chapters/writeup.html",
+    "title": "4  A comment on Colantone et al. (2024, APSR)",
+    "section": "",
+    "text": "[Summary of the key findings from the original study and this replication effort]"
+  },
+  {
+    "objectID": "chapters/writeup.html#introduction",
+    "href": "chapters/writeup.html#introduction",
+    "title": "4  A comment on Colantone et al. (2024, APSR)",
+    "section": "4.2 Introduction",
+    "text": "4.2 Introduction\n[Brief overview of the original study, its research question, data, and methods]\n\n4.2.1 Original Study\n[Brief description of the original study’s main findings and conclusions]"
+  },
+  {
+    "objectID": "chapters/writeup.html#computational-reproducibility",
+    "href": "chapters/writeup.html#computational-reproducibility",
+    "title": "4  A comment on Colantone et al. (2024, APSR)",
+    "section": "4.3 Computational Reproducibility",
+    "text": "4.3 Computational Reproducibility\n[Description of the process of computationally reproducing the original study’s results using the provided replication package]\nSee chapter (ref?)(computational),\n\n4.3.1 Discrepancies and Coding Errors\n[Discussion of any discrepancies or coding errors found during the computational reproduction process]"
+  },
+  {
+    "objectID": "chapters/writeup.html#robustness-reproduction-and-replication",
+    "href": "chapters/writeup.html#robustness-reproduction-and-replication",
+    "title": "4  A comment on Colantone et al. (2024, APSR)",
+    "section": "4.4 Robustness Reproduction and Replication",
+    "text": "4.4 Robustness Reproduction and Replication\nSee chapter (ref?)(robustness),\n[Explanation of the robustness checks and replication efforts undertaken, including changes to the sample period, clustering of standard errors, or other modifications]\n\n4.4.1 Regression Model\n[Description of the regression model(s) used in the original study and any modifications made for the robustness checks or replication]\n\n4.4.1.1 Results: [Outcome Variable 1]\n\n4.4.1.1.1 Clustering\n[Discussion of the results when the clustering of standard errors is modified, including any changes in the sign, magnitude, or statistical significance of the estimates]\n\n\n\n\n4.4.2 Results: [Outcome Variable 2]\n[Repeat sections 3.2.1 and 3.2.2 for additional outcome variables]"
+  },
+  {
+    "objectID": "chapters/writeup.html#conclusion",
+    "href": "chapters/writeup.html#conclusion",
+    "title": "4  A comment on Colantone et al. (2024, APSR)",
+    "section": "4.5 Conclusion",
+    "text": "4.5 Conclusion\n[Summary of the main findings from the replication effort and their implications for the original study’s conclusions]"
+  },
+  {
+    "objectID": "chapters/writeup.html#references",
+    "href": "chapters/writeup.html#references",
+    "title": "4  A comment on Colantone et al. (2024, APSR)",
+    "section": "4.6 References",
+    "text": "4.6 References\nSee"
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Chen, Jiafeng, and Jonathan Roth. 2023. “Logs\nwith Zeros? Some Problems and Solutions*.” The\nQuarterly Journal of Economics 139 (2): 891–936. https://doi.org/10.1093/qje/qjad054.\n\n\nColantone, Italo, Livio Di Lonardo, Yotam Margalit, and Marco Percoco.\n2024a. “The Political Consequences of Green Policies: Evidence\nfrom Italy—CORRIGENDUM.” American Political Science\nReview 118 (1): 545–48.\n\n\n———. 2024b. “The Political Consequences of Green Policies:\nEvidence from Italy—CORRIGENDUM.” American Political Science\nReview 118 (1): 545–48."
+  }
+]

@@ -1,0 +1,52 @@
+# Robustness checking and exploration {#robustness}
+
+```{r}
+#| label: input_data
+#| code-summary: "Input cleaned data"
+
+```
+ 
+
+
+## Rates of voting for each car group split: implication for identification
+
+We present a simple comparison of the Lega voting rates, voting changes, and other outcomes by each car-ownership group. (see below on functional forms)
+
+
+## Alternate control/treatment splits
+
+## Functional form {#functional}
+
+The main outcome variable is binary 0/1. The authors consider linear models throughout. I (David Reinstein) believe their identification implicitly depends on
+
+-   each of the unmeasured underlying characteristics (picked up by the proxy control in 'difference') each being associated with the voting outcome linearly on 'percentage point voting for Lega' ... so the each the
+
+But the treated and groups might have started from a different baseline level of voting for Lega (check this)
+
+If the true model is nonlinear (e.g., proportional, or with ceiling effects), the results here may be misleading. E.g., suppose the true effect of the policy on voting was the same for each car-ownership group as a percentage of the initial vote. Inappropriately estimating a linear model would find a substantial 'difference in difference' between these groups, even though the effect did not interact with car ownership itself.
+
+@chen_roth cite Wooldridge 2023 
+
+> An alternative identifying assumption is to impose that, in the absence of treatment, the percentage changes in the mean would have been the same for the treated and control group. As in Wooldridge (2023), this can be formalized using a “ratio” version of the parallel trends assumption,
+
+\[
+\frac{E[Y_{it}(0) | D_i = 1, Post_t = 1]}{E[Y_{it}(0) | D_i = 1, Post_t = 0]} = \frac{E[Y_{it}(0) | D_i = 0, Post_t = 1]}{E[Y_{it}(0) | D_i = 0, Post_t = 0]}
+\]
+
+We probably don't have time to test for proportional trends (as well as limited data for a powerful test). But it seems an equally-plausible model off-the cuff. Chen and Roth offer an estimation strategy 
+
+
+> Conveniently, this estimate can also be obtained using Poisson QMLE to estimate  $Y_{it} = \exp(\beta_0 + D_i \times Post_t \beta_1 + D_i\beta_2 + Post_t\beta_3)\epsilon_{it}$ 
+
+> and then computing $\hat{\theta}_{ATT\%} = \exp(\hat{\beta}_1) - 1 = -0.82$ as shown in column (1) of Table 6.
+
+
+
+Estimate this as a logit model? Other specifications like proportional hazards? Roth recommends Quasi-poisson
+
+https://www.jonathandroth.com/assets/files/LogUniqueHOD0_Draft_Accepted.pdf#page=25.45
+
+See section 5.2, "A DiD setting: Sequeira (2016)"
+
+```{}
+```

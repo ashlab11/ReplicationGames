@@ -1,14 +1,12 @@
 library(pacman)
-p_load(tidyverse, data.table, haven, glue, Hmisc)
+p_load(tidyverse, data.table, haven, glue, Hmisc, here)
 
 rm(list=ls())
 gc()
 
-path_to_project = "/Users/mclarars/ReplicationGames"
-
 
 # read in dta file
-survey = read_dta(glue("{path_to_project}/OriginalFiles/Survey.dta"))
+survey = read_dta(here::here("OriginalFiles", "Survey.dta"))
 dts    = read_dta(glue("{path_to_project}/OriginalFiles/Replication_Dataset.dta")) %>% data.table()
 
 # describe datasets

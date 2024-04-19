@@ -1,4 +1,4 @@
-# This file `BrownReplicationCleaning.R` reconstructs the   
+# This script `BrownReplicationCleaning.R` reconstructs the replication data from the survey data, and checks it against the provided data.
 
 # Convenience package(s)
 if (!require(here)) {
@@ -216,5 +216,4 @@ if (!dir.exists("../constructed_data")) {
   dir.create("../constructed_data")
 }
 write_dta(our_data, here::here("../constructed_data", "OurReplication_dta.dta"))
-
 

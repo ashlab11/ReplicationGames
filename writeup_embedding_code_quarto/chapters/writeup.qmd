@@ -1,0 +1,51 @@
+# A comment on Colantone et al. (2024, APSR) {#writeup}
+
+## Abstract
+
+[Summary of the key findings from the original study and this replication effort]
+
+## Introduction
+
+[Brief overview of the original study, its research question, data, and methods]
+
+### Original Study
+
+[Brief description of the original study's main findings and conclusions]
+
+## Computational Reproducibility
+
+[Description of the process of computationally reproducing the original study's results using the provided replication package]
+
+See chapter @ref(computational),
+
+### Discrepancies and Coding Errors
+
+[Discussion of any discrepancies or coding errors found during the computational reproduction process]
+
+## Robustness Reproduction and Replication
+
+See chapter @ref(robustness),
+
+[Explanation of the robustness checks and replication efforts undertaken, including changes to the sample period, clustering of standard errors, or other modifications]
+
+### Regression Model
+
+[Description of the regression model(s) used in the original study and any modifications made for the robustness checks or replication]
+
+#### Results: [Outcome Variable 1]
+
+##### Clustering
+
+[Discussion of the results when the clustering of standard errors is modified, including any changes in the sign, magnitude, or statistical significance of the estimates]
+
+### Results: [Outcome Variable 2]
+
+[Repeat sections 3.2.1 and 3.2.2 for additional outcome variables]
+
+## Conclusion
+
+[Summary of the main findings from the replication effort and their implications for the original study's conclusions]
+
+## References
+
+See 

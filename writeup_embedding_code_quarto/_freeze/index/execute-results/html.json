@@ -1,8 +1,10 @@
 {
-  "hash": "12728bc7421cebb627855bbdc83056a4",
+  "hash": "1b1afc889c4354ee565f0761f9956778",
   "result": {
-    "markdown": "# Preface {.unnumbered}\n\nThis is a Quarto book.\n\nTo learn more about Quarto books visit <https://quarto.org/docs/books>.\n\n\n::: {.cell}\n\n```{.r .cell-code}\noptions(knitr.duplicate.label = \"allow\")\n```\n:::\n",
-    "supporting": [],
+    "markdown": "# Preface {.unnumbered}\n\n\nWe are 'robustness replicating' @colantone2024political (also noting @colantone2024political_cor) for a replication game (see [Institute for replication](i4rep.org)\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\noptions(knitr.duplicate.label = \"allow\")\n```\n:::\n",
+    "supporting": [
+      "index_files"
+    ],
     "filters": [
       "rmarkdown/pagebreak.lua"
     ],
