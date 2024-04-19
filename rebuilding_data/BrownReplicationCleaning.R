@@ -1,3 +1,12 @@
+# This file `BrownReplicationCleaning.R` reconstructs the   
+
+# Convenience package(s)
+if (!require(here)) {
+  install.packages("here")
+  library(here)
+}
+
+
 #Getting packages they use
 
 packages_required <- c('ggplot2', 'tidyverse', 'broom', 'car','dplyr','modelr','haven', 'forcats', 
@@ -202,5 +211,10 @@ our_data$profile_gross_personal_eu <- survey_data$profile_gross_personal_eu
 our_data <- our_data %>%
   mutate(across(where(is.logical), as.integer))
 
-write_dta(our_data, "OurReplication_dta")
+
+if (!dir.exists("../constructed_data")) {
+  dir.create("../constructed_data")
+}
+write_dta(our_data, here::here("../constructed_data", "OurReplication_dta.dta"))
+
 
