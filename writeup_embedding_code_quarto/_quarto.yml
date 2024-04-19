@@ -3,8 +3,8 @@ project:
   output-dir: ../docs
 
 book:
-  title: "Replication game notebook: Colantone et al"
-  author: "David Reinstein, Others on team"
+  title: "Replication game notebook: Colantone et al (2024)"
+  author: "Florian Caro, Asher Labovich, Chidubem Okechi, David Reinstein, Maria Clara Rodriguez, Others on team"
   #repo-url: 
   repo-actions: [edit, issue]
   chapters:

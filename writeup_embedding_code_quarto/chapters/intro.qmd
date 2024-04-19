@@ -6,19 +6,19 @@
 
 Authors: ...
 
-*Note:* the 'writeup' will be given in the chapter "[A comment on Colantone et al. (2024, APSR)](#writeup)
+Our 'writeup' will be given in the chapter "[A comment on Colantone et al. (2024, APSR)](#writeup).
 
-## Background and goals
+## Background and goalss
 
-We are 'robustness replicating' @colantone2024political (also noting @colantone2024political_cor) for a replication game (see [Institute for replication](i4rep.org)
+We are 'robustness replicating' @colantone2024political (also noting @colantone2024political_cor) for a replication game (see [Institute for replication](i4rep.org))
 
 Main goals
 
 1.  Computationally reproduce key results (do they computationally hold up, especially the 'main claims'). See ['Computational replication'](#computational).
 
-2.  Robustness checks: Consider alternate plausible specifications and approaches; do the results persist? See ['Robustness checks'](#robustness)
+2.  Robustness checks: Consider alternate plausible specifications and approaches. Do the results persist? See ['Robustness checks'](#robustness)
 
-3.  Methodological (if time permits): critique methodology, provide further analysis (e.g., multiple hypothesis testing corrections, equivalence tests)
+Aspirational: critique methodology, provide further analysis (e.g., multiple hypothesis testing corrections, equivalence tests)
 
 ## The paper's main claim, evidence
 
@@ -26,13 +26,13 @@ Main goals
 
  \~\'This policy caused people \[who were financially hurt\] to vote for Lega\'. \[or more generally to be more right wing\]
 
-Background: \"The policy identifies the most polluting categories of vehicles and bans them from accessing and circulating within the area.\" 
+Background: \"The policy identifies the most polluting categories of vehicles and bans them from accessing and circulating within the area.\"
 
 ### **Main evidence for this claim:** 
 
 > the difference in the differences of outcomes by emission category, that is, between Diesel versus Petrol owners of Euro4, and Diesel versus Petrol owners of Euro5.\"
 
-(Note it's a difference in differences without a time dimension, although they later consider vote switches) 
+Note it's a difference in differences without a time dimension, although they later consider vote switches.
 
 
 > Our main dependent variable is an indicator that takes the value 1 if the respondent reports voting for Lega, and 0 otherwise.

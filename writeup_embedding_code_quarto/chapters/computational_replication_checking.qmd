@@ -8,6 +8,8 @@ Do the authors' results replicate?
 
 ## Data sourcing and code structure
 
+The authors provided the data, codebooks, and replication code, linked in their publication and hosted on Harvard Dataverse [here](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/NSC8TJ). We downloaded these files into the folder `OriginalFiles`
+
 
 ## Cleaning and reconstruction
 
@@ -21,20 +23,23 @@ Source and documentation:
 
 Florian re-ran the do files as found in ['original files'](https://github.com/ashlab11/ReplicationGames/tree/main/OriginalFiles)
 
- 
 > "From_Survey_To_Replication_Dataset.do": contains the Stata commands that allow to create Replication_Dataset.dta, starting from Survey.dta.
 
 > "Replication_Code_Stata.do": contains the Stata commands that allow to replicate all the results presented in the paper. It is organized by tables.
 
 (?All results or just regressions?)
 
-The `.do` file doesn't create tables, it just generates a log file
+Their `.do` file doesn't create formatted tables, it just generates a log file.
 
-Tables 2-5. Florian scanned it, saw the results looked similar; same coefficients and standard errors. [Note: this could also be checked in chatgpt.]
+Tables 2-5. Florian scanned it, saw the results looked similar; same coefficients and standard errors. 
+
+<!-- Note: this could also be checked in chatgpt. -->
 
 See the log file: [`stata_replication_log_20240419.log`](https://github.com/ashlab11/ReplicationGames/commit/c1c70a0f037e0fdfda7405dc0a089fee74f281cb#diff-0caf70398d5ec3d3683924f8a14046b5d176dc8b4a95f3aaabdadd96b9243390)
 
 ## R part of the code
+
+
 
 
 
