@@ -4,27 +4,25 @@
 \begin{tabular}{lcccccccccccc}
    \tabularnewline \midrule \midrule
    Dependent Variables: & \multicolumn{4}{c}{vote\_pd\_euro} & \multicolumn{4}{c}{vote\_forzaitalia\_euro} & \multicolumn{4}{c}{vote\_m5s\_euro}\\
-   Model:                                    & (1)      & (2)      & (3)      & (4)      & (5)           & (6)      & (7)      & (8)      & (9)      & (10)     & (11)     & (12)\\  
+   Model:                                    & (1)     & (2)     & (3)     & (4)     & (5)          & (6)     & (7)     & (8)     & (9)     & (10)    & (11)    & (12)\\  
    \midrule
    \emph{Variables}\\
-   dummy\_diesel                             & -0.0071  & 0.0087   & -0.0258  & 0.0112   & 0.0304        & 0.0371   & 0.0170   & 0.0351   & 0.0537   & 0.0198   & 0.0675   & 0.0220\\   
-                                             & (0.0558) & (0.0556) & (0.0406) & (0.0603) & (0.0444)      & (0.0455) & (0.0459) & (0.0492) & (0.0517) & (0.0294) & (0.0517) & (0.0317)\\   
-   dummy\_euro\_4                            & 0.0686   & 0.0946   & 0.0022   & 0.1065   & -0.0631$^{*}$ & -0.0563  & -0.0486  & -0.0622  & 0.0213   & -0.0034  & 0.0242   & -0.0245\\   
-                                             & (0.0628) & (0.0614) & (0.0481) & (0.0669) & (0.0370)      & (0.0388) & (0.0417) & (0.0433) & (0.0510) & (0.0271) & (0.0520) & (0.0296)\\   
-   dummy\_diesel $\times$ dummy\_euro\_4     & 0.0674   & -0.0024  & 0.0563   & 0.0037   & -0.0515       & -0.0773  & -0.0515  & -0.0720  & -0.0895  & -0.0045  & -0.0733  & -0.0108\\   
-                                             & (0.0813) & (0.0802) & (0.0571) & (0.0856) & (0.0581)      & (0.0598) & (0.0618) & (0.0646) & (0.0687) & (0.0382) & (0.0674) & (0.0406)\\   
+   dummy\_diesel                             & -0.007  & 0.009   & -0.026  & 0.011   & 0.030        & 0.037   & 0.017   & 0.035   & 0.054   & 0.020   & 0.068   & 0.022\\   
+                                             & (0.056) & (0.056) & (0.041) & (0.060) & (0.044)      & (0.045) & (0.046) & (0.049) & (0.052) & (0.029) & (0.052) & (0.032)\\   
+   dummy\_euro\_4                            & 0.069   & 0.095   & 0.002   & 0.106   & -0.063$^{*}$ & -0.056  & -0.049  & -0.062  & 0.021   & -0.003  & 0.024   & -0.025\\   
+                                             & (0.063) & (0.061) & (0.048) & (0.067) & (0.037)      & (0.039) & (0.042) & (0.043) & (0.051) & (0.027) & (0.052) & (0.030)\\   
+   dummy\_diesel $\times$ dummy\_euro\_4     & 0.067   & -0.002  & 0.056   & 0.004   & -0.051       & -0.077  & -0.051  & -0.072  & -0.089  & -0.005  & -0.073  & -0.011\\   
+                                             & (0.081) & (0.080) & (0.057) & (0.086) & (0.058)      & (0.060) & (0.062) & (0.065) & (0.069) & (0.038) & (0.067) & (0.041)\\   
    \midrule
    \emph{Fixed-effects}\\
-   EDU1                                      & Yes      & Yes      & Yes      & Yes      & Yes           & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      & Yes\\  
-   EDU2                                      & Yes      & Yes      & Yes      & Yes      & Yes           & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      & Yes\\  
-   EDU3                                      & Yes      & Yes      & Yes      & Yes      & Yes           & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      & Yes\\  
-   EDU4                                      & Yes      & Yes      & Yes      & Yes      & Yes           & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      & Yes\\  
-   profile\_gross\_personal\_eu              & Yes      & Yes      & Yes      & Yes      & Yes           & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      & Yes\\  
+   EDU1                                      & Yes     & Yes     & Yes     & Yes     & Yes          & Yes     & Yes     & Yes     & Yes     & Yes     & Yes     & Yes\\  
+   EDU2                                      & Yes     & Yes     & Yes     & Yes     & Yes          & Yes     & Yes     & Yes     & Yes     & Yes     & Yes     & Yes\\  
+   EDU3                                      & Yes     & Yes     & Yes     & Yes     & Yes          & Yes     & Yes     & Yes     & Yes     & Yes     & Yes     & Yes\\  
+   EDU4                                      & Yes     & Yes     & Yes     & Yes     & Yes          & Yes     & Yes     & Yes     & Yes     & Yes     & Yes     & Yes\\  
+   profile\_gross\_personal\_eu              & Yes     & Yes     & Yes     & Yes     & Yes          & Yes     & Yes     & Yes     & Yes     & Yes     & Yes     & Yes\\  
    \midrule
    \emph{Fit statistics}\\
-   Observations                              & 602      & 583      & 551      & 533      & 602           & 583      & 551      & 533      & 602      & 583      & 551      & 533\\  
-   R$^2$                                     & 0.29045  & 0.34999  & 0.70775  & 0.37686  & 0.26175       & 0.28662  & 0.29058  & 0.29861  & 0.13456  & 0.69179  & 0.20124  & 0.68518\\  
-   Within R$^2$                              & 0.06875  & 0.13211  & 0.59643  & 0.12747  & 0.03144       & 0.06502  & 0.05967  & 0.07160  & 0.02815  & 0.65366  & 0.08305  & 0.63708\\  
+   Dependent variable mean                   & 0.28571 & 0.28816 & 0.29764 & 0.30957 & 0.17608      & 0.18182 & 0.19056 & 0.19512 & 0.16279 & 0.16638 & 0.15426 & 0.15385\\  
    \midrule \midrule
    \multicolumn{13}{l}{\emph{Heteroskedasticity-robust standard-errors in parentheses}}\\
    \multicolumn{13}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
