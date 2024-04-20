@@ -5,7 +5,7 @@
 #| code-summary: "Input cleaned data"
 
 library(pacman)
-p_load(tidyverse, data.table, haven, glue, Hmisc, here, fixest, knitr, kableExtra)
+p_load(tidyverse, data.table, haven, glue, Hmisc, here, fixest, knitr, kableExtra, DT)
 
 rm(list=ls())
 gc()
@@ -17,20 +17,62 @@ dts = read_dta(here::here("OriginalFiles", "Replication_Dataset.dta")) %>% data.
 
 ```
 
+```{r}
+dts <- dts %>% 
+  mutate(
+    euro_class = class-1,
+    diesel = fuel == 1
+  )
+```
+
 
 
 We proposed a range of robustness tests. We were able to do a subset of these.
 
 ## Rates of voting for each car group split: implication for identification
 
-We aimed to present a simple comparison of the Lega voting rates, voting changes, and other outcomes by each car-ownership group. (see below on functional forms)
+We  present a simple comparison of the Lega voting rates, voting changes, and other outcomes by each car-ownership group. The table below captures the 'main effect' the authors investigate. Euro 4 *diesel* fuel owners supported Lega more in the post-policy European elections, relative to Euro 4 *gas* owners. This also held for *Euro 4* diesel fuel owners relative to diesel fuel owners in other classes. However, for these same comparisons in an earlier (2018) election, the rates of voting for Lega were fairly similar, or even went in the opposite direction. 
+The second table below enables sorting by diesel or class, to aid this consideration.
+
+Furthermore, the base rates of Lega voting were similar in order-of-magnitude, suggesting that the choice of functional form might not matter so much (see discussion below).
+
+```{r}
+
+
+# Assuming dts is your data frame
+dts %>%
+  group_by(euro_class, diesel) %>%
+  summarise(
+    mn_lega_18 = if(n() >= 50) mean(vote_lega_2018, na.rm = TRUE) else NA,  # Calculate mean if group size >= 10
+    mn_lega_euro = if(n() >= 50) mean(vote_lega_euro, na.rm = TRUE) else NA,  # Calculate mean if group size >= 10
+    count = n(), # Count of observations
+    .groups = "drop" # Drop grouping structure after summarization
+  ) %>% 
+  filter(!is.na(mn_lega_18)) %>% # Remove groups with less than 10 observations
+  kable(caption = "Voting for Lega by Euro category and fuel tyle", format = "html", escape = FALSE, digits=2) %>%
+      kable_styling
+
+dts %>%
+  group_by(euro_class, diesel) %>%
+  summarise(
+    mn_lega_18 = if(n() >= 50) mean(vote_lega_2018, na.rm = TRUE) else NA,  # Calculate mean if group size >= 10
+    mn_lega_euro = if(n() >= 50) mean(vote_lega_euro, na.rm = TRUE) else NA,  # Calculate mean if group size >= 10
+    count = n(), # Count of observations
+    .groups = "drop" # Drop grouping structure after summarization
+  ) %>% 
+  filter(!is.na(mn_lega_18)) %>% # Remove groups with less than 10 observations
+    mutate(across(where(is.numeric), ~ round(., 3))) %>%  # Round all numeric columns to 3 decimal places
+  DT::datatable()
+
+```
+
+
 
 ## Main results (table 2, recoded)
 
 ```{r}
 #| label: recode_table_2
 #| code-summary: "Table 2 recoded"
- 
 
 # Table 2 ------
 
@@ -76,7 +118,7 @@ etable(mod1,mod2,mod3,mod4,mod5,mod6,
 
 ## Alternate control/treatment splits
 
-I don't think we did this
+I don't think we did this, but we could do. This seems to me like an important robustness check
 
 ## Functional form {#functional}
 
@@ -84,7 +126,7 @@ The main outcome variable is binary 0/1. The authors consider linear models thro
 
 -   each of the unmeasured underlying characteristics (picked up by the proxy control in 'difference') each being associated with the voting outcome linearly on 'percentage point voting for Lega' ... so the each the
 
-But the treated and groups might have started from a different baseline level of voting for Lega (check this)
+But the treated and groups might have started from a different baseline level of voting for Lega -- (however, as we saw above, these were order-of-magnitude similar).
 
 If the true model is nonlinear (e.g., proportional, or with ceiling effects), the results here may be misleading. E.g., suppose the true effect of the policy on voting was the same for each car-ownership group as a percentage of the initial vote. Inappropriately estimating a linear model would find a substantial 'difference in difference' between these groups, even though the effect did not interact with car ownership itself.
 
@@ -113,37 +155,31 @@ We re-ran the model as a Poisson model. Results were qualitatively similar at a 
 
 mod1p = fepois(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4, 
              data = dts[target!=3 & target!=4 & no_answer_euro==0, ])
-summary(mod1p)
 
 mod2p = fepois(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
              + age + as.factor(female) | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
              data = dts[target!=3 & target!=4 & no_answer_euro==0, ],
              vcov = "hetero")
-summary(mod2p)
 
 mod3p = fepois(vote_lega_euro ~ dummy_diesel_ass + dummy_euro_4_ass + diesel_euro4_ass
              + age + female + dummy_car_unknown | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
              data = dts[target!=3 & no_answer_euro==0, ],
              vcov = "hetero")
-summary(mod3p)
 
 mod4p = fepois(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
              + age + female + vote_lega_2018 | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
              data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_2018==0, ],
              vcov = "hetero")
-summary(mod4p)
 
 mod5p = fepois(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
              + age + female + vote_lega_regional | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
              data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_regional==0, ],
              vcov = "hetero")
-summary(mod5p)
 
 mod6p = fepois(vote_lega_euro ~ dummy_diesel + dummy_euro_4 + dummy_diesel*dummy_euro_4
              + age + female + vote_lega_municipal | EDU1 + EDU2 + EDU3 + EDU4 + profile_gross_personal_eu, 
              data = dts[target!=3 & target!=4 & no_answer_euro==0 & no_answer_municipal==0, ],
              vcov = "hetero")
-summary(mod6[])
 
 # Save
 etable(mod1p,mod2p,mod3p,mod4p,mod5p,mod6p,

@@ -39,8 +39,7 @@ See the log file: [`stata_replication_log_20240419.log`](https://github.com/ashl
 
 ## R part of the code
 
-
-
+See `Replication_Code_R_minor_fixes.R` recreates their results using their code with only slight modifications (file paths, package etc.)
 
 
 

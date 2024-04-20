@@ -10,3 +10,22 @@ options(knitr.duplicate.label = "allow")
 ```
 
 
+
+## Key details
+
+
+Our 'writeup' will be given in the chapter "[A comment on Colantone et al. (2024, APSR)](#writeup).
+
+## Background and goals
+
+We are 'robustness replicating' @colantone2024political (also noting @colantone2024political_cor) for a replication game (see [Institute for replication](i4rep.org))
+
+## Main goals
+
+1.  Computationally reproduce key results (do they computationally hold up, especially the 'main claims'). See ['Computational replication'](#computational).
+
+2.  Robustness checks: Consider alternate plausible specifications and approaches. Do the results persist? See ['Robustness checks'](#robustness)
+
+Aspirational: critique methodology, provide further analysis (e.g., multiple hypothesis testing corrections, equivalence tests)
+
+

@@ -64,3 +64,43 @@
 \par\endgroup
 
 
+
+\begingroup
+\centering
+\begin{tabular}{lcccccccccccc}
+   \tabularnewline \midrule \midrule
+   Dependent Variables: & vote\_pd\_euro & vote\_forzaitalia\_euro & vote\_m5s\_euro & vote\_pd\_euro & vote\_forzaitalia\_euro & vote\_m5s\_euro & vote\_pd\_euro & vote\_forzaitalia\_euro & vote\_m5s\_euro & \multicolumn{3}{c}{vote\_lega\_euro}\\
+   Model:                                    & (1)      & (2)           & (3)      & (4)      & (5)      & (6)      & (7)      & (8)      & (9)      & (10)          & (11)         & (12)\\  
+   \midrule
+   \emph{Variables}\\
+   dummy\_diesel                             & -0.0071  & 0.0304        & 0.0537   & 0.0087   & 0.0371   & 0.0198   & -0.0258  & 0.0170   & 0.0675   & -0.0244       & -0.0057      & -0.0091\\   
+                                             & (0.0558) & (0.0444)      & (0.0517) & (0.0556) & (0.0455) & (0.0294) & (0.0406) & (0.0459) & (0.0517) & (0.0370)      & (0.0416)     & (0.0498)\\   
+   dummy\_euro\_4                            & 0.0686   & -0.0631$^{*}$ & 0.0213   & 0.0946   & -0.0563  & -0.0034  & 0.0022   & -0.0486  & 0.0242   & 0.0276        & 0.0418       & -0.0107\\   
+                                             & (0.0628) & (0.0370)      & (0.0510) & (0.0614) & (0.0388) & (0.0271) & (0.0481) & (0.0417) & (0.0520) & (0.0345)      & (0.0375)     & (0.0445)\\   
+   dummy\_diesel $\times$ dummy\_euro\_4     & 0.0674   & -0.0515       & -0.0895  & -0.0024  & -0.0773  & -0.0045  & 0.0563   & -0.0515  & -0.0733  &               &              &   \\   
+                                             & (0.0813) & (0.0581)      & (0.0687) & (0.0802) & (0.0598) & (0.0382) & (0.0571) & (0.0618) & (0.0674) &               &              &   \\   
+   diesel\_euro4                             &          &               &          &          &          &          &          &          &          & 0.1043$^{**}$ & 0.0964$^{*}$ & 0.1520$^{**}$\\   
+                                             &          &               &          &          &          &          &          &          &          & (0.0480)      & (0.0537)     & (0.0625)\\   
+   \midrule
+   \emph{Fixed-effects}\\
+   EDU1                                      & Yes      & Yes           & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      &               &              & \\  
+   EDU2                                      & Yes      & Yes           & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      &               &              & \\  
+   EDU3                                      & Yes      & Yes           & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      &               &              & \\  
+   EDU4                                      & Yes      & Yes           & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      &               &              & \\  
+   profile\_gross\_personal\_eu              & Yes      & Yes           & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      & Yes      &               &              & \\  
+   age\_cat                                  &          &               &          &          &          &          &          &          &          & Yes           & Yes          & Yes\\  
+   female                                    &          &               &          &          &          &          &          &          &          & Yes           & Yes          & Yes\\  
+   education\_raw                            &          &               &          &          &          &          &          &          &          & Yes           & Yes          & Yes\\  
+   income\_raw                               &          &               &          &          &          &          &          &          &          & Yes           & Yes          & Yes\\  
+   \midrule
+   \emph{Fit statistics}\\
+   Observations                              & 602      & 602           & 602      & 583      & 583      & 583      & 551      & 551      & 551      & 583           & 551          & 533\\  
+   R$^2$                                     & 0.29045  & 0.26175       & 0.13456  & 0.34999  & 0.28662  & 0.69179  & 0.70775  & 0.29058  & 0.20124  & 0.63149       & 0.61503      & 0.53068\\  
+   Within R$^2$                              & 0.06875  & 0.03144       & 0.02815  & 0.13211  & 0.06502  & 0.65366  & 0.59643  & 0.05967  & 0.08305  & 0.56506       & 0.54140      & 0.43453\\  
+   \midrule \midrule
+   \multicolumn{13}{l}{\emph{Heteroskedasticity-robust standard-errors in parentheses}}\\
+   \multicolumn{13}{l}{\emph{Signif. Codes: ***: 0.01, **: 0.05, *: 0.1}}\\
+\end{tabular}
+\par\endgroup
+
+

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.1.113">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="author" content="Florian Caro, Asher Labovich, Chidubem Okechi, David Reinstein, Maria Clara Rodriguez, Others on team">
+<meta name="author" content="Florian Caro, Asher Labovich, Chidubem Okechi, David Reinstein, Maria Clara Rodriguez">
 <meta name="dcterms.date" content="2024-04-19">
 <title>Replication game notebook: Colantone et al (2024)</title>
 <style>
@@ -110,7 +110,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./chapters/intro.html" rel="next">
+<link href="./chapters/computational_replication_checking.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -176,22 +176,17 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview and approach</span></a>
+  <a href="./chapters/computational_replication_checking.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Computational replication</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/computational_replication_checking.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Computational replication</span></a>
+  <a href="./chapters/robustness_checking.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Robustness checking and exploration</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/robustness_checking.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Robustness checking and exploration</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./chapters/writeup.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A comment on Colantone et al.&nbsp;(2024, APSR)</span></a>
+  <a href="./chapters/writeup.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A comment on Colantone et al.&nbsp;(2024, APSR)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -205,7 +200,14 @@ div.csl-indent {
         <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Table of contents</h2>
    
   <ul>
-<li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+<li>
+<a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a>
+  <ul class="collapse">
+<li><a href="#key-details" id="toc-key-details" class="nav-link" data-scroll-target="#key-details">Key details</a></li>
+  <li><a href="#background-and-goals" id="toc-background-and-goals" class="nav-link" data-scroll-target="#background-and-goals">Background and goals</a></li>
+  <li><a href="#main-goals" id="toc-main-goals" class="nav-link" data-scroll-target="#main-goals">Main goals</a></li>
+  </ul>
+</li>
   </ul></nav>
     </div>
 <!-- main -->
@@ -220,7 +222,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>Florian Caro, Asher Labovich, Chidubem Okechi, David Reinstein, Maria Clara Rodriguez, Others on team </p>
+             <p>Florian Caro, Asher Labovich, Chidubem Okechi, David Reinstein, Maria Clara Rodriguez </p>
           </div>
   </div>
     
@@ -241,6 +243,16 @@ div.csl-indent {
 <details><summary>Code</summary><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>knitr.duplicate.label <span class="op">=</span> <span class="st">"allow"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<section id="key-details" class="level2"><h2 class="anchored" data-anchor-id="key-details">Key details</h2>
+<p>Our ‘writeup’ will be given in the chapter “<a href="chapters/writeup.html">A comment on Colantone et al.&nbsp;(2024, APSR)</a>.</p>
+</section><section id="background-and-goals" class="level2"><h2 class="anchored" data-anchor-id="background-and-goals">Background and goals</h2>
+<p>We are ‘robustness replicating’ <span class="citation" data-cites="colantone2024political">Colantone et al. (<a href="references.html#ref-colantone2024political" role="doc-biblioref">2024a</a>)</span> (also noting <span class="citation" data-cites="colantone2024political_cor">Colantone et al. (<a href="references.html#ref-colantone2024political_cor" role="doc-biblioref">2024b</a>)</span>) for a replication game (see <a href="i4rep.org">Institute for replication</a>)</p>
+</section><section id="main-goals" class="level2"><h2 class="anchored" data-anchor-id="main-goals">Main goals</h2>
+<ol type="1">
+<li><p>Computationally reproduce key results (do they computationally hold up, especially the ‘main claims’). See <a href="chapters/computational_replication_checking.html">‘Computational replication’</a>.</p></li>
+<li><p>Robustness checks: Consider alternate plausible specifications and approaches. Do the results persist? See <a href="chapters/robustness_checking.html">‘Robustness checks’</a></p></li>
+</ol>
+<p>Aspirational: critique methodology, provide further analysis (e.g., multiple hypothesis testing corrections, equivalence tests)</p>
 
 
 <!-- -->
@@ -253,7 +265,7 @@ Colantone, Italo, Livio Di Lonardo, Yotam Margalit, and Marco Percoco. 2024a. <s
 ———. 2024b. <span>“The Political Consequences of Green Policies: Evidence from Italy—CORRIGENDUM.”</span> <em>American Political Science Review</em> 118 (1): 545–48.
 </div>
 </div>
-</section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -404,8 +416,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script><nav class="page-navigation"><div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/intro.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview and approach</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./chapters/computational_replication_checking.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Computational replication</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
@@ -420,6 +432,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## Key details</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>Our 'writeup' will be given in the chapter "<span class="co">[</span><span class="ot">A comment on Colantone et al. (2024, APSR)</span><span class="co">](#writeup)</span>.</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Background and goals</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>We are 'robustness replicating' @colantone2024political (also noting @colantone2024political_cor) for a replication game (see <span class="co">[</span><span class="ot">Institute for replication</span><span class="co">](i4rep.org)</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Main goals</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>Computationally reproduce key results (do they computationally hold up, especially the 'main claims'). See <span class="co">[</span><span class="ot">'Computational replication'</span><span class="co">](#computational)</span>.</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>Robustness checks: Consider alternate plausible specifications and approaches. Do the results persist? See <span class="co">[</span><span class="ot">'Robustness checks'</span><span class="co">](#robustness)</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>Aspirational: critique methodology, provide further analysis (e.g., multiple hypothesis testing corrections, equivalence tests)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

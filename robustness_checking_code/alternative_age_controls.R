@@ -283,7 +283,7 @@ etable(
   mod1, mod2, mod3, mod4, mod5, mod6,
   keep = c("dummy_diesel", "dummy_euro_4", "diesel_euro4"),
   tex = T,
-  file = here("robustness_checking_output/Table2_age_quadratic.tex")
+  file = here("robustness_checking_output", "Table2_age_quadratic.tex")
 )
 gc()
 

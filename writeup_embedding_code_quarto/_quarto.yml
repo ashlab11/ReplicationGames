@@ -4,12 +4,11 @@ project:
 
 book:
   title: "Replication game notebook: Colantone et al (2024)"
-  author: "Florian Caro, Asher Labovich, Chidubem Okechi, David Reinstein, Maria Clara Rodriguez, Others on team"
+  author: "Florian Caro, Asher Labovich, Chidubem Okechi, David Reinstein, Maria Clara Rodriguez"
   #repo-url: 
   repo-actions: [edit, issue]
   chapters:
     - index.qmd
-    - chapters/intro.qmd
     - chapters/computational_replication_checking.qmd
     - chapters/robustness_checking.qmd
     - chapters/writeup.qmd

@@ -81,7 +81,7 @@ dts[, education_levels_alt := case_when(
   education_level_it_original %in% 9:12 ~  "MA and higher",
   education_level_it_original > 13 ~       "Unknown",
 )]
-
+  
 educ_fullsample = dts[, prop.table(table(education_levels_original))] %>% data.table() %>% .[, sample := "Full Sample"]
 educ_diesel_euro4 = dts[diesel_euro4 == T, prop.table(table(education_levels_original))] %>% data.table() %>% .[, sample := "Diesel-Euro4"]
 educ_diesel_euro5 = dts[diesel_euro5 == T, prop.table(table(education_levels_original))] %>% data.table() %>% .[, sample := "Diesel-Euro5"]

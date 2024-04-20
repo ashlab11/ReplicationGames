@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Replication game notebook: Colantone et al (2024) - 2&nbsp; Computational replication</title>
+<title>Replication game notebook: Colantone et al (2024) - 1&nbsp; Computational replication</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -94,7 +94,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../chapters/robustness_checking.html" rel="next">
-<link href="../chapters/intro.html" rel="prev">
+<link href="../index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -135,7 +135,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Computational replication</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Computational replication</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -172,22 +172,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview and approach</span></a>
+  <a href="../chapters/computational_replication_checking.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Computational replication</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/computational_replication_checking.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Computational replication</span></a>
+  <a href="../chapters/robustness_checking.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Robustness checking and exploration</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/robustness_checking.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Robustness checking and exploration</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../chapters/writeup.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">A comment on Colantone et al.&nbsp;(2024, APSR)</span></a>
+  <a href="../chapters/writeup.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A comment on Colantone et al.&nbsp;(2024, APSR)</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -204,10 +199,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-sourcing-and-code-structure" id="toc-data-sourcing-and-code-structure" class="nav-link active" data-scroll-target="#data-sourcing-and-code-structure"><span class="toc-section-number">2.1</span>  Data sourcing and code structure</a></li>
-  <li><a href="#cleaning-and-reconstruction" id="toc-cleaning-and-reconstruction" class="nav-link" data-scroll-target="#cleaning-and-reconstruction"><span class="toc-section-number">2.2</span>  Cleaning and reconstruction</a></li>
-  <li><a href="#stata-part-of-code" id="toc-stata-part-of-code" class="nav-link" data-scroll-target="#stata-part-of-code"><span class="toc-section-number">2.3</span>  ‘Stata’ part of code</a></li>
-  <li><a href="#r-part-of-the-code" id="toc-r-part-of-the-code" class="nav-link" data-scroll-target="#r-part-of-the-code"><span class="toc-section-number">2.4</span>  R part of the code</a></li>
+  <li><a href="#data-sourcing-and-code-structure" id="toc-data-sourcing-and-code-structure" class="nav-link active" data-scroll-target="#data-sourcing-and-code-structure"><span class="toc-section-number">1.1</span>  Data sourcing and code structure</a></li>
+  <li><a href="#cleaning-and-reconstruction" id="toc-cleaning-and-reconstruction" class="nav-link" data-scroll-target="#cleaning-and-reconstruction"><span class="toc-section-number">1.2</span>  Cleaning and reconstruction</a></li>
+  <li><a href="#stata-part-of-code" id="toc-stata-part-of-code" class="nav-link" data-scroll-target="#stata-part-of-code"><span class="toc-section-number">1.3</span>  ‘Stata’ part of code</a></li>
+  <li><a href="#r-part-of-the-code" id="toc-r-part-of-the-code" class="nav-link" data-scroll-target="#r-part-of-the-code"><span class="toc-section-number">1.4</span>  R part of the code</a></li>
   </ul>
 </nav>
     </div>
@@ -216,7 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span id="computational" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Computational replication</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span id="computational" class="quarto-section-identifier d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Computational replication</span></span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -235,16 +230,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Using the authors own code as provided?</p></li>
 <li><p>When we re-check their data cleaning and feature construction?</p></li>
 </ol>
-<section id="data-sourcing-and-code-structure" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="data-sourcing-and-code-structure"><span class="header-section-number">2.1</span> Data sourcing and code structure</h2>
+<section id="data-sourcing-and-code-structure" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="data-sourcing-and-code-structure"><span class="header-section-number">1.1</span> Data sourcing and code structure</h2>
 <p>The authors provided the data, codebooks, and replication code, linked in their publication and hosted on Harvard Dataverse <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/NSC8TJ">here</a>. We downloaded these files into the folder <code>OriginalFiles</code></p>
 </section>
-<section id="cleaning-and-reconstruction" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="cleaning-and-reconstruction"><span class="header-section-number">2.2</span> Cleaning and reconstruction</h2>
+<section id="cleaning-and-reconstruction" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="cleaning-and-reconstruction"><span class="header-section-number">1.2</span> Cleaning and reconstruction</h2>
 <p>We recode the construction of the data used in the analysis in chapter <span class="math inline">\(\ref{recode}\)</span>.</p>
 </section>
-<section id="stata-part-of-code" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="stata-part-of-code"><span class="header-section-number">2.3</span> ‘Stata’ part of code</h2>
+<section id="stata-part-of-code" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="stata-part-of-code"><span class="header-section-number">1.3</span> ‘Stata’ part of code</h2>
 <blockquote class="blockquote">
 <p>Re-run Stata analysis code and see if it generates the numbers reported in the text [DONE] (looks good)</p>
 </blockquote>
@@ -262,8 +257,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- Note: this could also be checked in chatgpt. -->
 <p>See the log file: <a href="https://github.com/ashlab11/ReplicationGames/commit/c1c70a0f037e0fdfda7405dc0a089fee74f281cb#diff-0caf70398d5ec3d3683924f8a14046b5d176dc8b4a95f3aaabdadd96b9243390"><code>stata_replication_log_20240419.log</code></a></p>
 </section>
-<section id="r-part-of-the-code" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="r-part-of-the-code"><span class="header-section-number">2.4</span> R part of the code</h2>
+<section id="r-part-of-the-code" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="r-part-of-the-code"><span class="header-section-number">1.4</span> R part of the code</h2>
+<p>See <code>Replication_Code_R_minor_fixes.R</code> recreates their results using their code with only slight modifications (file paths, package etc.)</p>
 
 
 <!-- -->
@@ -422,13 +418,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../chapters/intro.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Overview and approach</span></span>
+      <a href="../index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/robustness_checking.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Robustness checking and exploration</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Robustness checking and exploration</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
@@ -473,10 +469,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## R part of the code</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>See <span class="in">`Replication_Code_R_minor_fixes.R`</span> recreates their results using their code with only slight modifications (file paths, package etc.)</span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

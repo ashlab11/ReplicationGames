@@ -2,7 +2,47 @@
 
 ## Abstract
 
-[Summary of the key findings from the original study and this replication effort]
+###  The paper's main claim
+
+Background: 
+
+> major ban on polluting cars introduced in Milan, which was strongly opposed by the populist right party Lega.
+
+> The policy identifies the most polluting categories of vehicles and bans them from accessing and circulating within the area.
+
+
+**Main claim:** 
+
+ \~\'This policy caused people \[who were financially hurt\] to vote for Lega\'. \[or more generally to be more right wing\]
+
+
+### Main evidence for this claim:*
+
+> the difference in the differences of outcomes by emission category, that is, between Diesel versus Petrol owners of Euro4, and Diesel versus Petrol owners of Euro5.\"
+
+In general this is a 'difference in differences' without a time dimension, although some of their regressions control for previous voting record.
+
+> Our main dependent variable is an indicator that takes the value 1 if the respondent reports voting for Lega, and 0 otherwise.
+
+> the average estimated effect is 13.5 percentage points ... the baseline rate of support for Lega in the sample was 24.4%. ... owning a car affected by the vehicle ban raised the probability of voting for Lega in the subsequent elections by 55% above the baseline rate\"
+
+### **Secondary claim(s)/other key claims:** 
+
+> electoral change did not stem from a broader shift against environmentalism, but rather from disaffection with the policy\'s uneven pocketbook implications
+
+They also argue that \~'people who were *compensated* did *not* shift in response to the policy'.
+
+These are implicitly claims of (1) null or bounded effects and (2) *differential* effects (for those compensated vs. those not compensated.) This is important to the authors' theoretical interpretation of the effect, and its generalization to political behavior as a whole.
+
+
+### Replication success 
+
+1. The paper's results could be reconstructed from the data and code provided, with only a moderate amount of effort
+
+2. We also recoded the construction of their replication data from the survey data they provided and their description. There were no discrepancies.
+
+3. We considered a handful of alternate specifications and robustness checks. The qualitative results were preserved in every case we examined.^[However, because of time constraints, we were not able to complete all of the robustness checks and methodological comparisons we had hoped to do.]
+
 
 ## Introduction
 

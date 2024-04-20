@@ -1,7 +1,7 @@
 {
-  "hash": "4ff599a3329aaa0d8c29dc646e5e3e6b",
+  "hash": "1261daa49c574c45f7edf5053aa9a7e4",
   "result": {
-    "markdown": "# Preface {.unnumbered}\n\nWe are 'robustness replicating' @colantone2024political (also noting @colantone2024political_cor) for a replication game (see [Institute for replication](i4rep.org)).\n\nAll of our computational replication and additional results should be constructable by sourcing the file `main.R` in our root directory. (However, packages may need to be installed.)\n\n\n::: {.cell}\n\n```{.r .cell-code}\noptions(knitr.duplicate.label = \"allow\")\n```\n:::\n",
+    "markdown": "# Preface {.unnumbered}\n\nWe are 'robustness replicating' @colantone2024political (also noting @colantone2024political_cor) for a replication game (see [Institute for replication](i4rep.org)).\n\nAll of our computational replication and additional results should be constructable by sourcing the file `main.R` in our root directory. (However, packages may need to be installed.)\n\n\n::: {.cell}\n\n```{.r .cell-code}\noptions(knitr.duplicate.label = \"allow\")\n```\n:::\n\n\n\n\n## Key details\n\n\nOur 'writeup' will be given in the chapter \"[A comment on Colantone et al. (2024, APSR)](#writeup).\n\n## Background and goals\n\nWe are 'robustness replicating' @colantone2024political (also noting @colantone2024political_cor) for a replication game (see [Institute for replication](i4rep.org))\n\n## Main goals\n\n1.  Computationally reproduce key results (do they computationally hold up, especially the 'main claims'). See ['Computational replication'](#computational).\n\n2.  Robustness checks: Consider alternate plausible specifications and approaches. Do the results persist? See ['Robustness checks'](#robustness)\n\nAspirational: critique methodology, provide further analysis (e.g., multiple hypothesis testing corrections, equivalence tests)\n\n\n",
     "supporting": [
       "index_files"
     ],
